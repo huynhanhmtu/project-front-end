@@ -13,25 +13,18 @@ const spin = keyframes`
 const Loader = styled.div`
   margin: auto;
   margin-top: 1rem;
-  border: 4px solid #f3f3f3;
+  border: 3px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 4px solid ${(props) => (props.color ? "blue" : "#3498db")};
+  border-top: 3px solid ${(props) => (props.color ? "blue" : "#3498db")};
 width: 30px;
 height: 30px;
 animation: ${spin} 1s linear infinite;
 `
-const Notification = styled.p`
-margin-top: 1rem;
-text-align: center;
-`
 
-export default function Loading() {
+export default function Loader() {
   return (
     <div>
       <Loader />
-      <Notification>
-        Loading...
-      </Notification>
     </div>
   )
 }
