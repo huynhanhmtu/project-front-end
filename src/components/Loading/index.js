@@ -8,7 +8,7 @@ const spin = keyframes`
   100% {
     transform: rotate(360deg);
   }
-`
+`;
 
 const Loader = styled.div`
   margin: auto;
@@ -19,12 +19,8 @@ const Loader = styled.div`
 width: 30px;
 height: 30px;
 animation: ${spin} 1s linear infinite;
-`
+`;
 
-export default function Loader() {
-  return (
-    <div>
-      <Loader />
-    </div>
-  )
+export default function Loading() {
+  return <Loader />
 }

@@ -1,21 +1,23 @@
-import { BrowserRouter, Route, Switch } from "react-router-dom";
-import { renderRoutesAdmin, renderRoutesHome, renderRoutesUser } from "routes";
 import { Suspense } from "react";
-import Loader from "components/Loader";
-import PageNotFound from "containers/PageNotFound";
+import { BrowserRouter } from "react-router-dom";
+import { Switch } from "react-router-dom";
+import { Route } from "react-router-dom";
+import Loading from "./components/Loading";
+import PageNotFound from "./containers/PageNotFound";
+import { renderRoutesAdmin, renderRoutesHome, renderRoutesUser } from "./routes";
 
 function App() {
   return (
-    // <Suspense fallback={<Loader />}>
-    <BrowserRouter>
-      <Switch>
-        {renderRoutesHome()}
-        {renderRoutesUser()}
-        {renderRoutesAdmin()}
-        <Route path="" component={PageNotFound} />
-      </Switch>
-    </BrowserRouter>
-    // </Suspense>
+    <Suspense fallback={<Loading />}>
+      <BrowserRouter>
+        <Switch>
+          {renderRoutesHome()}
+          {renderRoutesUser()}
+          {renderRoutesAdmin()}
+          <Route path="" component={PageNotFound} />
+        </Switch>
+      </BrowserRouter>
+    </Suspense>
   );
 };
 

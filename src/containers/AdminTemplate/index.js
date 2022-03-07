@@ -1,7 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { Route } from 'react-router-dom';
+import Sidebar from './_components/Sidebar';
 
-export default function AdminTemplate() {
+export default function AdminTemplate(props) {
+  const { exact, path, component } = props;
+
   return (
-    <div>AdminTemplate</div>
+    <>
+      <Sidebar />
+      <Route exact={exact} path={path} component={component} />
+    </>
   )
 }
