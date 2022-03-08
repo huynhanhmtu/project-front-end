@@ -1,4 +1,4 @@
-import { lazy } from "react";
+import { lazy } from "react"; //Lazy loading để sau khi hoàn thành đầy đủ các chức năng
 import { Route } from "react-router-dom";
 import AdminTemplate from "containers/AdminTemplate";
 import DashboardPage from "containers/AdminTemplate/DashboardPage";
@@ -18,19 +18,19 @@ const routesHome = [
     // component: lazy(() => { import("containers/HomeTemplate/HomePage") })
   },
   {
-    exact: false,
+    exact: true,
     path: "/search",
     component: SearchPage
     // component: lazy(() => { import("containers/HomeTemplate/SearchPage") })
   },
   {
-    exact: false,
+    exact: true,
     path: "/job-detail/:id",
     component: JobDetailPage
     // component: lazy(() => { import("containers/HomeTemplate/JobDetailsPage") })
   },
   {
-    exact: false,
+    exact: true,
     path: "/info/:id",
     component: InfoPage
     // component: lazy(() => { import("containers/HomeTemplate/InfoPage") })
@@ -39,13 +39,13 @@ const routesHome = [
 
 const routesUser = [
   {
-    exact: false,
+    exact: true,
     path: "/login",
     component: LoginPage
     // component: lazy(() => { import("containers/AdminTemplate/LoginPage") })
   },
   {
-    exact: false,
+    exact: true,
     path: "/signup",
     component: SignupPage
     // component: lazy(() => { import("containers/AdminTemplate/SignupPage") })
@@ -54,7 +54,7 @@ const routesUser = [
 
 const routesAdmin = [
   {
-    exact: false,
+    exact: true,
     path: "/dashboard",
     component: DashboardPage
     // component: lazy(() => { import("containers/AdminTemplate/DashboardPage") })

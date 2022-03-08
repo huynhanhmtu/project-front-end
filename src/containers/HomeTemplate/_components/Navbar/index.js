@@ -1,52 +1,86 @@
 import './style.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { actFetchJobTypes } from './modules/actions';
+import { useDispatch, useSelector } from 'react-redux';
 
 export default function NavbarHome() {
-  // const handleLogout = () => {
-  //   if (window.confirm("Logout?")) {
-  //     localStorage.removeItem("UserInfo");
-  //   }
-  // }
+  const jobs = useSelector(state => state.jobTypesReducer.jobTypes);
+  const dispatch = useDispatch();
 
-  const handleRenderLink = () => {
-    // if (localStorage.getItem("UserInfo")) {
-    //   return (
-    //     <>
-    //       <Link className="nav-link px-1" to="/dashboard">Dashboard</Link>
-    //       <a className="nav-link px-1" style={{ cursor: "pointer" }} onClick={handleLogout}>Logout</a>
-    //     </>
-    //   )
-    // }
-    return (
-      <>
-        <Link className="nav-link px-1" to="/login">Login</Link>
-        <Link className="nav-link px-1" to="/signup">Signup</Link>
-      </>
-    )
+  useEffect(() => {
+    dispatch(actFetchJobTypes());
+  }, []);
+
+  const handleRenderJobs = () => {
+    return jobs?.map((job, index) => {
+      return (
+        <li key={index} className="nav-item dropdown" >
+          <Link className="nav-link dropdown" to="/" data-toggle="dropdown">{job.name}</Link>
+          <div className="dropdown-menu" style={{ columnCount: "2", right: `${index >= 4 ? "0" : ""}`, left: `${index >= 4 ? "auto" : "0"}` }}>
+            {handleRenderSubJobs(job)}
+          </div>
+        </li>
+      )
+    })
+  };
+
+  const handleRenderSubJobs = (job) => {
+    const subJobs = job.subTypeJobs;
+    return subJobs.map(sub => {
+      return <Link key={sub._id} className="dropdown-item" to="/" >{sub.name}</Link>
+    })
   }
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
-      <div className='d-flex'>
-        <Link className="navbar-brand" to="/">Logo</Link>
-        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent01" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span className="navbar-toggler-icon" />
-        </button>
-        <div className="collapse navbar-collapse" id="navbarSupportedContent01">
+    <div>
+      <nav className="navbar navbar-expand-lg navbar-light justify-content-between">
+        <div className='d-flex'>
+          <Link className="navbar-brand" to="/">Logo<span className="sr-only">(Home Page)</span></Link>
+          <form className="form-inline my-2 my-lg-0" onSubmit={(e) => { e.preventDefault() }}>
+            <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" />
+            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          </form>
+        </div>
+        <div className='d-flex'>
+          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHome" aria-controls="navbarHome" aria-expanded="false" aria-label="Toggle navigation">
+            <span className="navbar-toggler-icon"></span>
+          </button>
+          <div className="collapse navbar-collapse" id="navbarHome">
+            <ul className="navbar-nav mr-auto">
+              <li className="nav-item active">
+                <NavLink className="nav-link" to="/" >FiverPro</NavLink>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/" >Explore</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/" >English</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/" >US$ USD</Link>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/" >Become a Seller</Link>
+              </li>
+            </ul>
+          </div>
           <ul className="navbar-nav mr-auto">
             <li className="nav-item">
-              <NavLink exact activeClassName="active" className="nav-link" to="/">HomePage</NavLink>
+              <Link className="nav-link" to="/login" >Sign in</Link>
             </li>
             <li className="nav-item">
-              <NavLink activeClassName="active" className="nav-link" to="/search">SearchPage</NavLink>
+              <Link className="nav-link" to="/signup" >Join</Link>
             </li>
           </ul>
         </div>
-      </div>
-      <div className='d-flex'>
-        {handleRenderLink()}
-      </div>
-    </nav>
+      </nav>
+      <hr />
+      <nav className="navbar navbar-expand-lg navbar-light ">
+        <ul className="navbar-nav mr-auto w-100 justify-content-between">
+          {handleRenderJobs()}
+        </ul>
+      </nav>
+    </div >
   )
 }
