@@ -1,10 +1,10 @@
 import * as ActionTypes from './constants';
 import api from 'utils/apiUtils';
 
-export const actSearchJobs = (job) => {
+export const actSearchJobs = (keyword) => {
   return (dispatch) => {
     dispatch(actSearchRequest());
-    api.get(`/api/jobs/by-name?name=${job}`)
+    api.get(`/api/jobs/by-name?name=${keyword}`)
       .then(result => {
         dispatch(actSearchSuccess(result.data));
       })

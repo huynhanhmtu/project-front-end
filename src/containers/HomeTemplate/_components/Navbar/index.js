@@ -32,6 +32,12 @@ export default function NavbarHome() {
     })
   }
 
+  const handleOnChange = (e) => {
+    localStorage.setItem("job-keyword", JSON.stringify(e.target.value));
+  }
+
+  // Chưa làm được tính năng onSubmit để chuyển sang trang search do Navbar và HomeTemplate không nằm trong Route => không có history để redirect hoặc push hay replace => cần thiết thì tạo thêm store để dispatch các history của từng trang lên store
+
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light justify-content-between">
@@ -41,7 +47,7 @@ export default function NavbarHome() {
             e.preventDefault();
             console.log("Submit");
           }}>
-            <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" />
+            <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search"  onChange={handleOnChange}/>
             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
@@ -73,7 +79,7 @@ export default function NavbarHome() {
               <Link className="nav-link" to="/login" >Sign in</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/signup" >Join</Link>
+              <Link className="nav-link btn btn-success" to="/signup" >Join</Link>
             </li>
           </ul>
         </div>

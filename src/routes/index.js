@@ -9,6 +9,7 @@ import HomePage from "containers/HomeTemplate/HomePage";
 import InfoPage from "containers/HomeTemplate/InfoPage";
 import JobDetailPage from "containers/HomeTemplate/JobDetailsPage";
 import JobTypesPage from "containers/HomeTemplate/JobTypesPage";
+import SearchingPage from "containers/HomeTemplate/SearchingPage";
 
 const routesHome = [
   {
@@ -16,6 +17,12 @@ const routesHome = [
     path: "/",
     component: HomePage
     // component: lazy(() => { import("containers/HomeTemplate/HomePage") })
+  },
+  {
+    exact: true,
+    path: "/search",
+    component: SearchingPage
+    // component: lazy(() => { import("containers/HomeTemplate/SearchingPage") })
   },
   {
     exact: true,

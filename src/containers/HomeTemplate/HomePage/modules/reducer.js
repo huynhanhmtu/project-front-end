@@ -3,7 +3,7 @@ import * as ActionTypes from './constants';
 const initialState = {
   store: null,
   loading: false,
-  error: null
+  error: null,
 }
 
 const searchingReducer = (state = initialState, action) => {
@@ -20,7 +20,6 @@ const searchingReducer = (state = initialState, action) => {
       state.store = payload;
       state.loading = false;
       state.error = null;
-      console.log(payload);
       return { ...state };
     }
     case ActionTypes.SEARCHING_FAILED: {
