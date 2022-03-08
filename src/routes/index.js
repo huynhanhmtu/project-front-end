@@ -8,7 +8,7 @@ import HomeTemplate from "containers/HomeTemplate";
 import HomePage from "containers/HomeTemplate/HomePage";
 import InfoPage from "containers/HomeTemplate/InfoPage";
 import JobDetailPage from "containers/HomeTemplate/JobDetailsPage";
-import SearchPage from "containers/HomeTemplate/SearchPage";
+import JobTypesPage from "containers/HomeTemplate/JobTypesPage";
 
 const routesHome = [
   {
@@ -19,15 +19,15 @@ const routesHome = [
   },
   {
     exact: true,
-    path: "/search",
-    component: SearchPage
-    // component: lazy(() => { import("containers/HomeTemplate/SearchPage") })
+    path: "/job-detail",
+    component: JobDetailPage
+    // component: lazy(() => { import("containers/HomeTemplate/JobDetailsPage") })
   },
   {
     exact: true,
-    path: "/job-detail/:id",
-    component: JobDetailPage
-    // component: lazy(() => { import("containers/HomeTemplate/JobDetailsPage") })
+    path: "/job-types/:typeId",
+    component: JobTypesPage
+    // component: lazy(() => { import("containers/HomeTemplate/HomePage/JobTypesPage") })
   },
   {
     exact: true,

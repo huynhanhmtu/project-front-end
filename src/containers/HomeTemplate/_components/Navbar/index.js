@@ -15,8 +15,8 @@ export default function NavbarHome() {
   const handleRenderJobs = () => {
     return jobs?.map((job, index) => {
       return (
-        <li key={index} className="nav-item dropdown" >
-          <Link className="nav-link dropdown" to="/" data-toggle="dropdown">{job.name}</Link>
+        <li key={index} className="nav-item dropdown">
+          <Link className="nav-link dropdown" to={`/job-types/${job._id}`} data-toggle="dropdown">{job.name}</Link>
           <div className="dropdown-menu" style={{ columnCount: "2", right: `${index >= 4 ? "0" : ""}`, left: `${index >= 4 ? "auto" : "0"}` }}>
             {handleRenderSubJobs(job)}
           </div>
@@ -37,7 +37,10 @@ export default function NavbarHome() {
       <nav className="navbar navbar-expand-lg navbar-light justify-content-between">
         <div className='d-flex'>
           <Link className="navbar-brand" to="/">Logo<span className="sr-only">(Home Page)</span></Link>
-          <form className="form-inline my-2 my-lg-0" onSubmit={(e) => { e.preventDefault() }}>
+          <form className="form-inline my-2 my-lg-0" onSubmit={(e) => {
+            e.preventDefault();
+            console.log("Submit");
+          }}>
             <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" />
             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
