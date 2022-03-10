@@ -1,9 +1,8 @@
 import React from 'react';
 
 export default function HomePage(props) {
-
   const handleOnChange = (e) => {
-    localStorage.setItem("job-keyword", JSON.stringify(e.target.value));
+    localStorage.setItem("job-keyword", JSON.stringify(e.target.value.trim()));
   }
 
   const handleOnSubmit = () => {
@@ -35,21 +34,6 @@ export default function HomePage(props) {
       </section>
       <section>
         Marketplace
-      </section>
-      <section>
-        Business
-      </section>
-      <section>
-        Slider - Users
-      </section>
-      <section>
-        Logo maker
-      </section>
-      <section>
-        Freelancers
-      </section>
-      <section>
-        Guides - Get started
       </section>
     </>
   )

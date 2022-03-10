@@ -10,6 +10,7 @@ import InfoPage from "containers/HomeTemplate/InfoPage";
 import JobDetailPage from "containers/HomeTemplate/JobDetailsPage";
 import JobTypesPage from "containers/HomeTemplate/JobTypesPage";
 import SearchingPage from "containers/HomeTemplate/SearchingPage";
+import SubJobsPage from "containers/HomeTemplate/SubJobsPage";
 
 const routesHome = [
   {
@@ -26,15 +27,21 @@ const routesHome = [
   },
   {
     exact: true,
-    path: "/job-detail",
-    component: JobDetailPage
-    // component: lazy(() => { import("containers/HomeTemplate/JobDetailsPage") })
+    path: "/job-types/:typeId",
+    component: JobTypesPage
+    // component: lazy(() => { import("containers/HomeTemplate/JobTypesPage") })
   },
   {
     exact: true,
-    path: "/job-types/:typeId",
-    component: JobTypesPage
-    // component: lazy(() => { import("containers/HomeTemplate/HomePage/JobTypesPage") })
+    path: "/sub-jobs/:subId",
+    component: SubJobsPage
+    // component: lazy(() => { import("containers/HomeTemplate/SubJobsPage") })
+  },
+  {
+    exact: true,
+    path: "/job-detail/:jobId",
+    component: JobDetailPage
+    // component: lazy(() => { import("containers/HomeTemplate/JobDetailsPage") })
   },
   {
     exact: true,

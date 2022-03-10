@@ -1,25 +1,26 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { actSearchJobs } from '../HomePage/modules/actions';
+import { actFetchSubJobs } from './modules/actions';
 
-const MAX_TITLE_LENGTH = 50;
+export default function SubJobsPage(props) {
+  const subJobs = useSelector(state => state.subJobsReducer.store);
+  console.log(subJobs);
 
-
-export default function SearchingPage() {
-  const keyword = localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "";
-  const searchingList = useSelector(state => state.searchingReducer.store);
-
+  const subId = props.match.params.subId;
   const dispatch = useDispatch();
+
   useEffect(() => {
-    if (keyword) {
-      dispatch(actSearchJobs(keyword));
+    if (subId) {
+      dispatch(actFetchSubJobs(subId)); //Tạo thêm thuộc tính trên reducer để khi nhấn vào link khác => thay đổi subId => render lại (dispatch action ở Navbar)
     }
   }, []);
 
-  const handleRenderList = () => {
-    if (searchingList && searchingList.length > 0) {
-      return searchingList.map(job => {
+  const MAX_TITLE_LENGTH = 50;
+
+  const handleRenderItem = () => {
+    if (subJobs && subJobs.length > 0) {
+      return subJobs.map(job => {
         return (
           <div key={job._id} className=' col-3 p-3'>
             <div className="card">
@@ -45,21 +46,17 @@ export default function SearchingPage() {
     }
     return (
       <div className='m-auto py-4 text-center'>
-        <img style={{ height: 200 }} src='https://fiverr-res.cloudinary.com/npm-assets/@fiverr/search_perseus/apps/empty-search-results.229c0d3.png'></img>
-        <h5>No Results Found For Your Search</h5>
-        <p>Try a new search or get a free quote for your project from our community of freelancers.</p>
-        <Link className="btn btn-success" to="/signup" >Get a Free Quote</Link>
+        <p>No Services Available.</p>
+        <Link to="/" >Back to Homepage</Link>
       </div>
     );
   }
 
   return (
     <div>
-      <p>Suggested ...random some button onClick change localStorage + dispatch</p>
-      <p>{searchingList?.length} Result for "{keyword}"</p>
+      <p>{subJobs?.length} Services Available</p>
       <div className='row m-auto w-100'>
-        {handleRenderList()}
-        {/* Render theo số lượng item/page bằng MUI */}
+        {handleRenderItem()}
       </div>
     </div>
   )

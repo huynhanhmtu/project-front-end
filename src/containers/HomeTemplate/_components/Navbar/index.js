@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { actFetchJobTypes } from './modules/actions';
 import { useDispatch, useSelector } from 'react-redux';
+import { actSearchJobs } from 'containers/HomeTemplate/HomePage/modules/actions';
 
 export default function NavbarHome() {
   const jobs = useSelector(state => state.jobTypesReducer.jobTypes);
@@ -25,30 +26,33 @@ export default function NavbarHome() {
     })
   };
 
-  const handleRenderSubJobs = (job) => {
+  const handleRenderSubJobs = job => {
     const subJobs = job.subTypeJobs;
     return subJobs.map(sub => {
-      return <Link key={sub._id} className="dropdown-item" to="/" >{sub.name}</Link>
+      return <Link key={sub._id} className="dropdown-item" to={`/sub-jobs/${sub._id}`} >{sub.name}</Link>
     })
   }
 
   const handleOnChange = (e) => {
-    localStorage.setItem("job-keyword", JSON.stringify(e.target.value));
+    localStorage.setItem("job-keyword", JSON.stringify(e.target.value.trim()));
   }
 
-  // Chưa làm được tính năng onSubmit để chuyển sang trang search do Navbar và HomeTemplate không nằm trong Route => không có history để redirect hoặc push hay replace => cần thiết thì tạo thêm store để dispatch các history của từng trang lên store
+  const handleOnSubmit = () => {
+    const keyword = localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "";
+    dispatch(actSearchJobs(keyword));
+  }
 
   return (
     <div>
       <nav className="navbar navbar-expand-lg navbar-light justify-content-between">
         <div className='d-flex'>
           <Link className="navbar-brand" to="/">Logo<span className="sr-only">(Home Page)</span></Link>
-          <form className="form-inline my-2 my-lg-0" onSubmit={(e) => {
-            e.preventDefault();
-            console.log("Submit");
-          }}>
-            <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search"  onChange={handleOnChange}/>
-            <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+          <form className="form-inline my-2 my-lg-0">
+
+            {/* Chưa làm được tính năng onSubmit của form khi enter vì không redirect được => xem thêm createBrowserHistory() */}
+
+            <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" onChange={handleOnChange} />
+            <Link className="btn btn-success my-2 my-sm-0" to="/search" onClick={handleOnSubmit}>Search</Link>
           </form>
         </div>
         <div className='d-flex'>
