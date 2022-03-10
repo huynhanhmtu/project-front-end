@@ -31,3 +31,12 @@ const actFetchFailed = error => {
     payload: error
   }
 };
+
+export const actChangeSubJobs = (id)=>{
+  return dispatch => {
+    dispatch({
+      type: ActionTypes.SUB_JOBS_CHANGED,
+      payload: id
+    })
+  }
+}

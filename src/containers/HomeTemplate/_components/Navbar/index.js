@@ -4,6 +4,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { actFetchJobTypes } from './modules/actions';
 import { useDispatch, useSelector } from 'react-redux';
 import { actSearchJobs } from 'containers/HomeTemplate/HomePage/modules/actions';
+import { actChangeSubJobs } from 'containers/HomeTemplate/SubJobsPage/modules/actions';
 
 export default function NavbarHome() {
   const jobs = useSelector(state => state.jobTypesReducer.jobTypes);
@@ -29,7 +30,9 @@ export default function NavbarHome() {
   const handleRenderSubJobs = job => {
     const subJobs = job.subTypeJobs;
     return subJobs.map(sub => {
-      return <Link key={sub._id} className="dropdown-item" to={`/sub-jobs/${sub._id}`} >{sub.name}</Link>
+      return <Link key={sub._id} className="dropdown-item" to={`/sub-jobs/${sub._id}`} onClick={() => {
+        dispatch(actChangeSubJobs(sub._id))
+      }}>{sub.name}</Link>
     })
   }
 

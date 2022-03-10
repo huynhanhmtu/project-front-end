@@ -4,6 +4,7 @@ const initialState = {
   store: null,
   loading: false,
   error: null,
+  subId: null,
 }
 
 const subJobsReducer = (state = initialState, action) => {
@@ -14,6 +15,7 @@ const subJobsReducer = (state = initialState, action) => {
       state.store = null;
       state.loading = true;
       state.error = null;
+      state.subId = null;
       return { ...state };
     }
     case ActionTypes.SUB_JOBS_SUCCESS: {
@@ -26,6 +28,10 @@ const subJobsReducer = (state = initialState, action) => {
       state.store = null;
       state.loading = false;
       state.error = payload.response.data.message;
+      return { ...state };
+    }
+    case ActionTypes.SUB_JOBS_CHANGED: {
+      state.subId = payload;
       return { ...state };
     }
     default:
