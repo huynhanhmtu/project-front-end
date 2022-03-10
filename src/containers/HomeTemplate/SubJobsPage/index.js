@@ -20,7 +20,8 @@ export default function SubJobsPage(props) {
     if (subJobs && subJobs.length > 0) {
       return subJobs.map(job => {
         return (
-          <div key={job._id} className=' col-3 p-3'>
+          // Tạo form chung cho chức năng search và render item
+          <Link key={job._id} className=' col-3 p-3' to={`/job-detail/${job._id}`}>
             <div className="card">
               <img className="w-100" style={{ height: 220, objectFit: "cover" }} src={job.image ? job.image : "https://images.squarespace-cdn.com/content/v1/562e3dade4b0c308fbc94d7b/1603322266670-Y6WK1MCXQ09I5GUT4TFN/coming+soon+yellow.jpg?format=1500w"} />
               <div className="card-body">
@@ -38,7 +39,7 @@ export default function SubJobsPage(props) {
                 <p className='mb-0'>STARTING AT<span> US${job.price}</span></p>
               </div>
             </div>
-          </div>
+          </Link>
         )
       });
     }

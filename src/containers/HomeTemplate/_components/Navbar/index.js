@@ -52,7 +52,7 @@ export default function NavbarHome() {
           <Link className="navbar-brand" to="/">Logo<span className="sr-only">(Home Page)</span></Link>
           <form className="form-inline my-2 my-lg-0">
 
-            {/* Chưa làm được tính năng onSubmit của form khi enter vì không redirect được => xem thêm createBrowserHistory() */}
+            {/* Chưa làm được tính năng onSubmit của form khi enter vì không redirect được => xem thêm createBrowserHistory() hoặc tính năng DOM và gắn event click vào button đồng thời chặn preventDefault */}
 
             <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" onChange={handleOnChange} />
             <Link className="btn btn-success my-2 my-sm-0" to="/search" onClick={handleOnSubmit}>Search</Link>
