@@ -22,8 +22,8 @@ export default function JobTypesPage(props) {
     const handleRenderItem = () => {
       return jobType.subTypeJobs.map(sub => {
         return (
-          <div className='col-4 p-2'>
-            <Link key={sub._id} className="card" to={`/sub-jobs/${sub._id}`}>
+          <div key={sub._id} className='col-4 p-2'>
+            <Link className="card" to={`/sub-jobs/${sub._id}`}>
               <img className="card-img-top w-100" src={sub.image ? sub.image : "https://images.squarespace-cdn.com/content/v1/562e3dade4b0c308fbc94d7b/1603322266670-Y6WK1MCXQ09I5GUT4TFN/coming+soon+yellow.jpg?format=1500w"} alt={sub.name} style={{ height: 220, objectFit: "cover" }} />
               <p className="card-text">{sub.name}</p>
             </Link>
