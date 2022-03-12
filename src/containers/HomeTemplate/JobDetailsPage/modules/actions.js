@@ -89,4 +89,35 @@ const actCommentFailed = error => {
   }
 }
 
-export { actFetchJobDetail, actDispatchComment };
+const actOrderJob = jobId => {
+  return dispatch => {
+    dispatch(actOrderRequest());
+    api.patch(`/api/jobs/booking/${jobId}`)
+      .then(result => {
+        dispatch(actOrderSuccess(result.data));
+      })
+      .catch(error => {
+        dispatch(actOrderFailed(error));
+      })
+  }
+}
+
+const actOrderRequest = () => {
+  return {
+    type: ActionTypes.ORDER_JOB_REQUEST,
+  }
+}
+const actOrderSuccess = data => {
+  return {
+    type: ActionTypes.ORDER_JOB_SUCCESS,
+    payload: data
+  }
+}
+const actOrderFailed = error => {
+  return {
+    type: ActionTypes.ORDER_JOB_FAILED,
+    payload: error
+  }
+}
+
+export { actFetchJobDetail, actDispatchComment, actOrderJob };

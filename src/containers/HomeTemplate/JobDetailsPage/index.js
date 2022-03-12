@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { actDispatchComment, actFetchJobDetail } from './modules/actions';
+import { actDispatchComment, actFetchJobDetail, actOrderJob } from './modules/actions';
 
 export default function JobDetailPage(props) {
   const jobData = useSelector(state => state.jobDetailReducer.jobData);
@@ -92,6 +92,14 @@ export default function JobDetailPage(props) {
     )
   }
 
+  const handleOrderJob = () => {
+    if (localStorage.getItem("UserInfo")) {
+      dispatch(actOrderJob(jobId));
+    } else {
+      alert("You must be logged in to order.");
+    }
+  }
+
   if (jobData) {
     return (
       <div>
@@ -115,9 +123,14 @@ export default function JobDetailPage(props) {
             <div className='text-warning'>Review Chart</div>
             {handleFetchListComments()}
           </div>
-          <div className='col-5'></div>
+          <div className='col-5'>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
+            <button className='btn btn-success' onClick={(e) => {
+              e.preventDefault();
+              handleOrderJob();
+            }}>Continue (${jobData.price})</button>
+          </div>
         </div>
-
       </div>
     )
   }

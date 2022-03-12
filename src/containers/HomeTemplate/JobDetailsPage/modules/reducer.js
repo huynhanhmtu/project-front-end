@@ -12,6 +12,10 @@ const initialState = {
   newComment: null,
   newCommentLoading: false,
   newCommentError: null,
+
+  ordered: null,
+  orderLoading: false,
+  orderError: null
 }
 
 const jobDetailReducer = (state = initialState, action) => {
@@ -72,8 +76,25 @@ const jobDetailReducer = (state = initialState, action) => {
       state.newComment = null;
       state.newCommentLoading = false;
       state.newCommentError = payload.response.data.message;
+      return { ...state };
+    }
 
-      console.log(payload.response);
+    case ActionTypes.ORDER_JOB_REQUEST: {
+      state.ordered = null;
+      state.orderLoading = true;
+      state.orderError = null;
+      return { ...state };
+    }
+    case ActionTypes.ORDER_JOB_SUCCESS: {
+      state.ordered = payload;
+      state.orderLoading = false;
+      state.orderError = null;
+      return { ...state };
+    }
+    case ActionTypes.ORDER_JOB_FAILED: {
+      state.ordered = null;
+      state.orderLoading = false;
+      state.orderError = payload.response.data.message;
       return { ...state };
     }
 
