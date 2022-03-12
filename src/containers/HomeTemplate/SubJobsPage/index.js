@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { actFetchSubJobs } from './modules/actions';
 
+const MAX_TITLE_LENGTH = 35;
 export default function SubJobsPage(props) {
   const subJobs = useSelector(state => state.subJobsReducer.store);
   const subId = useSelector(state => state.subJobsReducer.subId) || props.match.params.subId;
@@ -14,8 +15,6 @@ export default function SubJobsPage(props) {
     }
   }, [subId]);
 
-  const MAX_TITLE_LENGTH = 50;
-
   const handleRenderItem = () => {
     if (subJobs && subJobs.length > 0) {
       return subJobs.map(job => {
@@ -26,7 +25,7 @@ export default function SubJobsPage(props) {
               <img className="w-100" style={{ height: 220, objectFit: "cover" }} src={job.image ? job.image : "https://images.squarespace-cdn.com/content/v1/562e3dade4b0c308fbc94d7b/1603322266670-Y6WK1MCXQ09I5GUT4TFN/coming+soon+yellow.jpg?format=1500w"} />
               <div className="card-body">
                 <p className="card-title" style={{ height: 25 }}>
-                  {job.subType?.name ? job.subType.name : ""}
+                  {job.subType?.name ? job.subType.name : "Title"}
                 </p>
                 <p className='card-text' style={{ height: 40 }}>
                   {job.name ? job.name.substring(0, MAX_TITLE_LENGTH) : ""}{job.name?.length > MAX_TITLE_LENGTH ? "..." : ""}
@@ -46,7 +45,7 @@ export default function SubJobsPage(props) {
     return (
       <div className='m-auto py-4 text-center'>
         <p>No Services Available.</p>
-        <Link to="/" >Back to Homepage</Link>
+        <Link to="" onClick={()=>{props.history.goBack()}} >Back to previous</Link>
       </div>
     );
   }

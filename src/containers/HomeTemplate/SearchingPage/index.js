@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { actSearchJobs } from '../HomePage/modules/actions';
 
-const MAX_TITLE_LENGTH = 50;
+const MAX_TITLE_LENGTH = 35;
 
 export default function SearchingPage() {
   const keyword = localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "";
@@ -27,7 +27,7 @@ export default function SearchingPage() {
                 <p className="card-title" style={{height:25}}>
                   {job.subType?.name ? job.subType.name : ""}
                 </p>
-                <p className='card-text' style={{ height: 40 }}>
+                <p className='card-text' style={{ height: 40, textTransform: "capitalize" }}>
                   {job.name ? job.name.substring(0, MAX_TITLE_LENGTH) : ""}{job.name?.length > MAX_TITLE_LENGTH ? "..." : ""}
                 </p>
                 <span><i className="fa fa-star" style={{ color: "#ffbe5b" }}></i> 5.0 ({job.rating ? job.rating : 0})</span>

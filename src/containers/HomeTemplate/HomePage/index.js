@@ -23,7 +23,7 @@ export default function HomePage(props) {
           </form>
         </div>
         <div>
-          Parner
+          Partner
         </div>
       </header>
       <section>

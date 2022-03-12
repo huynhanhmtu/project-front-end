@@ -12,7 +12,7 @@ export default function HomeTemplate(props) {
       <NavbarHome />
       <Route exact={exact} path={path} component={component} />
       <FooterHome />
-      <ScrollToTop smooth style={{ width: 50, height: 50 }} />
+      <ScrollToTop smooth style={{ width: 50, height: 50, backgroundColor:"#ffffffcc" }} />
     </>
   )
 }
