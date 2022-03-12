@@ -6,7 +6,8 @@ import { actSearchJobs } from '../HomePage/modules/actions';
 const MAX_TITLE_LENGTH = 35;
 
 export default function SearchingPage() {
-  const keyword = localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "";
+  const preKeyword = useSelector(state => state.searchingReducer.keyword);
+  const keyword = localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : preKeyword;
   const searchingList = useSelector(state => state.searchingReducer.store);
 
   const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function SearchingPage() {
             <div className="card">
               <img className="w-100" style={{ height: 220, objectFit: "cover" }} src={job.image ? job.image : "https://images.squarespace-cdn.com/content/v1/562e3dade4b0c308fbc94d7b/1603322266670-Y6WK1MCXQ09I5GUT4TFN/coming+soon+yellow.jpg?format=1500w"} />
               <div className="card-body">
-                <p className="card-title" style={{height:25}}>
+                <p className="card-title" style={{ height: 25 }}>
                   {job.subType?.name ? job.subType.name : ""}
                 </p>
                 <p className='card-text' style={{ height: 40, textTransform: "capitalize" }}>

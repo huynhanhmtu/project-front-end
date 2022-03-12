@@ -4,9 +4,14 @@ const initialState = {
   jobData: null,
   loading: false,
   error: null,
+
   comments: null,
   commentLoading: false,
   commentError: null,
+
+  newComment: null,
+  newCommentLoading: false,
+  newCommentError: null,
 }
 
 const jobDetailReducer = (state = initialState, action) => {
@@ -31,6 +36,7 @@ const jobDetailReducer = (state = initialState, action) => {
       state.error = payload.response.data.message;
       return { ...state };
     }
+
     case ActionTypes.LIST_COMMENT_REQUEST: {
       state.comments = null;
       state.commentLoading = true;
@@ -49,6 +55,28 @@ const jobDetailReducer = (state = initialState, action) => {
       state.commentError = payload.response.data.message;
       return { ...state };
     }
+
+    case ActionTypes.COMMENT_REQUEST: {
+      state.newComment = null;
+      state.newCommentLoading = true;
+      state.newCommentError = null;
+      return { ...state };
+    }
+    case ActionTypes.COMMENT_SUCCESS: {
+      state.newComment = payload;
+      state.newCommentLoading = false;
+      state.newCommentError = null;
+      return { ...state };
+    }
+    case ActionTypes.COMMENT_FAILED: {
+      state.newComment = null;
+      state.newCommentLoading = false;
+      state.newCommentError = payload.response.data.message;
+
+      console.log(payload.response);
+      return { ...state };
+    }
+
     default:
       return { ...state };
   }

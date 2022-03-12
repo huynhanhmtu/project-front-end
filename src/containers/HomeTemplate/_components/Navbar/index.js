@@ -59,7 +59,7 @@ export default function NavbarHome() {
             e.preventDefault();
             handleOnSubmit();
           }}>
-            <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" onChange={handleOnChange} />
+            <input className="form-control mr-sm-2" type="search" placeholder={localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "Find Services"} aria-label="Search" onChange={handleOnChange} />
             <Link className="btn btn-success my-2 my-sm-0" to="/search" ref={btnSearch} onClick={handleOnSubmit}>Search</Link>
           </form>
         </div>

@@ -1,21 +1,80 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import actFetchJobDetail from './modules/actions';
+import { actDispatchComment, actFetchJobDetail } from './modules/actions';
 
 export default function JobDetailPage(props) {
   const jobData = useSelector(state => state.jobDetailReducer.jobData);
   const comments = useSelector(state => state.jobDetailReducer.comments);
   const jobId = props.match.params.jobId;
 
+  const input = useRef(null);
+
+  const [newComment, setNewComment] = useState({
+    content: "",
+    job: jobId
+  });
+  const [notification, setNotification] = useState(" ");
+
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actFetchJobDetail(jobId));
   }, []);
 
+
+  const handleOnSubmit = () => {
+    if (newComment.content.length > 0) {
+      dispatch(actDispatchComment(newComment));
+      newComment.content = "";
+      input.current.value = "";
+      setNotification("Comment của bạn đã được gởi đi.");
+    } else {
+      setNotification("Vui lòng nhập nội dung comment.");
+    }
+  }
+
+  const handleOnChange = (e) => {
+    setNewComment({ ...newComment, content: e.target.value.trim() });
+  }
+
+  const handleRenderForm = () => {
+    return (
+      <div>
+        <form className="form-inline my-2 my-lg-0 justify-content-center" onSubmit={(e) => {
+          e.preventDefault();
+          handleOnSubmit();
+        }}>
+          <textarea className="form-control mr-sm-2 w-50" placeholder="Comment ..." aria-label="Comment" onChange={handleOnChange} ref={input} />
+          <button className="btn btn-success my-2 my-sm-0" onClick={(e) => {
+            e.preventDefault();
+            handleOnSubmit()
+          }}>Send</button>
+        </form>
+        <p className='text-danger'>{notification}</p>
+      </div>
+    )
+  }
+
+
+  const handleRenderComments = comments => {
+    return comments.map(comment => {
+      return (
+        <div key={comment._id}>
+          <hr />
+          <p className='font-weight-bold'>{comment.user.name} <span className='font-weight-normal font-italic'>({comment.user.role})</span></p>
+          <p>{comment.content}</p>
+        </div>
+      )
+    });
+  }
+
   const handleFetchListComments = () => {
     if (comments && comments.length > 0) {
       return (
         <div>
+          <div className='pb-3'>
+            <p>Leave your comment here:</p>
+            {handleRenderForm()}
+          </div>
           <p>({comments.length}) Comments:</p>
           {handleRenderComments(comments)}
         </div>
@@ -23,17 +82,11 @@ export default function JobDetailPage(props) {
     }
     return (
       <div>
-        <p>There are no comments yet, leave your comment below.</p>
+        <p>There are no comments yet, leave your comment below:</p>
+        {handleRenderForm()}
       </div>
     )
   }
-
-  const handleRenderComments = comments => {
-    return comments.map(comment => {
-      return <p key={comment._id}>{comment.content} - by {comment.user.name} ({comment.user.role})</p>
-    });
-  }
-
 
   if (jobData) {
     return (
@@ -54,12 +107,13 @@ export default function JobDetailPage(props) {
               sheets containing Lorem Ipsum passages, and more recently with desktop
               publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+
+            <div className='text-warning'>Review Chart</div>
+            {handleFetchListComments()}
           </div>
           <div className='col-5'></div>
         </div>
-        <div className='text-warning'>Review Chart</div>
-        <div className='text-warning'>Comment</div>
-        {handleFetchListComments()}
+
       </div>
     )
   }

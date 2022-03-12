@@ -6,10 +6,12 @@ export const actSearchJobs = (keyword) => {
     dispatch(actSearchRequest());
     api.get(`/api/jobs/by-name?name=${keyword}`)
       .then(result => {
-        dispatch(actSearchSuccess(result.data));
+        localStorage.removeItem("job-keyword");
+        dispatch(actSearchSuccess(result.data, keyword));
       })
       .catch(error => {
-        dispatch(actSearchFailed(error));
+        localStorage.removeItem("job-keyword");
+        dispatch(actSearchFailed(error, keyword));
       });
   }
 }
@@ -19,15 +21,15 @@ const actSearchRequest = () => {
     type: ActionTypes.SEARCHING_REQUEST,
   }
 };
-const actSearchSuccess = data => {
+const actSearchSuccess = (data, keyword) => {
   return {
     type: ActionTypes.SEARCHING_SUCCESS,
-    payload: data
+    payload: { data: data, keyword: keyword }
   }
 };
-const actSearchFailed = error => {
+const actSearchFailed = (error, keyword) => {
   return {
     type: ActionTypes.SEARCHING_FAILED,
-    payload: error
+    payload: { error: error, keyword: keyword }
   }
 };

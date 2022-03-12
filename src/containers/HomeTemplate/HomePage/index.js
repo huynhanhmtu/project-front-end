@@ -18,7 +18,7 @@ export default function HomePage(props) {
             e.preventDefault();
             handleOnSubmit()
           }}>
-            <input className="form-control mr-sm-2" type="search" placeholder="Find Jobs" aria-label="Search" onChange={handleOnChange} />
+            <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" onChange={handleOnChange} />
             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>
         </div>
