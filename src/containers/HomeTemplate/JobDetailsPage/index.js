@@ -22,13 +22,17 @@ export default function JobDetailPage(props) {
 
 
   const handleOnSubmit = () => {
-    if (newComment.content.length > 0) {
-      dispatch(actDispatchComment(newComment));
-      newComment.content = "";
-      input.current.value = "";
-      setNotification("Comment của bạn đã được gởi đi.");
+    if (localStorage.getItem("UserInfo")) {
+      if (newComment.content.length > 0) {
+        dispatch(actDispatchComment(newComment));
+        newComment.content = "";
+        input.current.value = "";
+        setNotification("Your comment has been sent.");
+      } else {
+        setNotification("Please enter comment's content.");
+      }
     } else {
-      setNotification("Vui lòng nhập nội dung comment.");
+      setNotification("You must be logged in to post a comment.");
     }
   }
 
