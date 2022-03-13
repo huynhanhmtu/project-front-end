@@ -67,7 +67,7 @@ export default function NavbarHome() {
       return (
         <>
           <li className="nav-item">
-            <Link className="nav-link" to="/user-info" >User Info</Link>
+            <Link className="nav-link" to="/user-page" >User Info</Link>
           </li>
           <a className="nav-link px-1" style={{ cursor: "pointer" }} onClick={() => {
             if (window.confirm("Logout?")) {

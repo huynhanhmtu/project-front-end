@@ -11,6 +11,7 @@ import JobDetailPage from "containers/HomeTemplate/JobDetailsPage";
 import JobTypesPage from "containers/HomeTemplate/JobTypesPage";
 import SearchingPage from "containers/HomeTemplate/SearchingPage";
 import SubJobsPage from "containers/HomeTemplate/SubJobsPage";
+import UserPage from "containers/HomeTemplate/UserPage";
 
 const routesHome = [
   {
@@ -48,6 +49,12 @@ const routesHome = [
     path: "/info/:id",
     component: InfoPage
     // component: lazy(() => { import("containers/HomeTemplate/InfoPage") })
+  },
+  {
+    exact: true,
+    path: "/user-page",
+    component: UserPage
+    // component: lazy(() => { import("containers/HomeTemplate/UserPage") })
   },
 ];
 
