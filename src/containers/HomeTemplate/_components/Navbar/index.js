@@ -1,5 +1,5 @@
 import './style.css';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { actFetchJobTypes } from './modules/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,6 +7,7 @@ import { actSearchJobs } from 'containers/HomeTemplate/HomePage/modules/actions'
 import { actChangeSubJobs } from 'containers/HomeTemplate/SubJobsPage/modules/actions';
 
 export default function NavbarHome() {
+  const [isLogin, setIsLogin] = useState(true);
   const btnSearch = useRef(null);
   const jobs = useSelector(state => state.jobTypesReducer.jobTypes);
   const dispatch = useDispatch();
@@ -46,6 +47,49 @@ export default function NavbarHome() {
     dispatch(actSearchJobs(keyword));
     btnSearch.current.click();
   }
+
+  const handleRenderLoginSpace = () => {
+    if (localStorage.getItem("UserInfo") && JSON.parse(localStorage.getItem("UserInfo")).user.role === "ADMIN") {
+      return (
+        <>
+          <li className="nav-item">
+            <Link className="nav-link" to="/dashboard">Dashboard</Link>
+          </li>
+          <a className="nav-link px-1" style={{ cursor: "pointer" }} onClick={() => {
+            if (window.confirm("Logout?")) {
+              localStorage.removeItem("UserInfo");
+              setIsLogin(false);
+            }
+          }}>Logout</a>
+        </>
+      )
+    } else if (localStorage.getItem("UserInfo") && JSON.parse(localStorage.getItem("UserInfo")).user.role === "CLIENT") {
+      return (
+        <>
+          <li className="nav-item">
+            <Link className="nav-link" to="/user-info" >User Info</Link>
+          </li>
+          <a className="nav-link px-1" style={{ cursor: "pointer" }} onClick={() => {
+            if (window.confirm("Logout?")) {
+              localStorage.removeItem("UserInfo");
+              setIsLogin(false);
+            }
+          }}>Logout</a>
+        </>
+      )
+    } else {
+      return (
+        <>
+          <li className="nav-item">
+            <Link className="nav-link" to="/login" >Login</Link>
+          </li>
+          <li className="nav-item">
+            <Link className="nav-link btn btn-success" to="/signup" >Join</Link>
+          </li>
+        </>
+      )
+    }
+  };
 
   return (
     <div>
@@ -87,12 +131,13 @@ export default function NavbarHome() {
             </ul>
           </div>
           <ul className="navbar-nav mr-auto">
-            <li className="nav-item">
+            {/* <li className="nav-item">
               <Link className="nav-link" to="/login" >Sign in</Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link btn btn-success" to="/signup" >Join</Link>
-            </li>
+            </li> */}
+            {handleRenderLoginSpace()}
           </ul>
         </div>
       </nav>
