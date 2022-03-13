@@ -3,7 +3,6 @@ import { Route } from "react-router-dom";
 import AdminTemplate from "containers/AdminTemplate";
 import DashboardPage from "containers/AdminTemplate/DashboardPage";
 import LoginPage from "containers/AdminTemplate/LoginPage";
-import SignupPage from "containers/AdminTemplate/SignupPage";
 import HomeTemplate from "containers/HomeTemplate";
 import HomePage from "containers/HomeTemplate/HomePage";
 import InfoPage from "containers/HomeTemplate/InfoPage";
@@ -12,6 +11,7 @@ import JobTypesPage from "containers/HomeTemplate/JobTypesPage";
 import SearchingPage from "containers/HomeTemplate/SearchingPage";
 import SubJobsPage from "containers/HomeTemplate/SubJobsPage";
 import UserPage from "containers/HomeTemplate/UserPage";
+import SignUpPage from "containers/AdminTemplate/SignUpPage";
 
 const routesHome = [
   {
@@ -68,8 +68,8 @@ const routesUser = [
   {
     exact: true,
     path: "/signup",
-    component: SignupPage
-    // component: lazy(() => { import("containers/AdminTemplate/SignupPage") })
+    component: SignUpPage
+    // component: lazy(() => { import("containers/AdminTemplate/SignUpPage") })
   }
 ];
 

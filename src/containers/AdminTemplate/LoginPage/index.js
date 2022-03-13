@@ -63,7 +63,7 @@ export default function LoginPage(props) {
           <div className='font-italic'>
             <p>Example:</p>
             {/* <p>(Admin): demo000 - 123123</p> */}
-            <p>(Client): an13@gmail.com - 123456</p>
+            <p>(Client): huynhanh.mtu@gmail.com - 123456 (_id: 622d51d1f85597001ca8440a)</p>
           </div>
           {notifications()}
         </div>
