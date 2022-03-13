@@ -76,6 +76,7 @@ const jobDetailReducer = (state = initialState, action) => {
       state.newComment = null;
       state.newCommentLoading = false;
       state.newCommentError = payload.response.data.message;
+      console.log(payload.response.data.message);
       return { ...state };
     }
 

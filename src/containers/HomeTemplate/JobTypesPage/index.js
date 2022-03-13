@@ -37,7 +37,7 @@ export default function JobTypesPage(props) {
         <div className='text-center'>
           <h5>{jobType.name}</h5>
         </div>
-        <div className='row'>
+        <div className='row m-0'>
           <div className='col-3'>
             <p className='font-weight-bold'>{jobType.name}</p>
             <ul className='navbar-nav'>
