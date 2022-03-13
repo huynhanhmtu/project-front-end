@@ -26,3 +26,11 @@ const actSignUpFailed = error => ({
   type: ActionTypes.SIGN_UP_FAILED,
   payload: error
 });
+
+export const actResetSignUpMessenger = () => {
+  return dispatch => {
+    dispatch({
+      type: ActionTypes.SIGN_UP_RESET
+    });
+  };
+};

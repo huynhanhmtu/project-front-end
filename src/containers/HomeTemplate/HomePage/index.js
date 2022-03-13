@@ -5,7 +5,8 @@ export default function HomePage(props) {
     localStorage.setItem("job-keyword", JSON.stringify(e.target.value.trim()));
   }
 
-  const handleOnSubmit = () => {
+  const handleOnSubmit = e => {
+    e.preventDefault();
     props.history.push("/search");
   };
 
@@ -14,10 +15,7 @@ export default function HomePage(props) {
       <header>
         <div>
           Carousel
-          <form className="form-inline my-2 my-lg-0" onSubmit={(e) => {
-            e.preventDefault();
-            handleOnSubmit()
-          }}>
+          <form className="form-inline my-2 my-lg-0" onSubmit={handleOnSubmit}>
             <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" onChange={handleOnChange} />
             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
           </form>

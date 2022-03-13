@@ -6,8 +6,8 @@ export default function JobDetailPage(props) {
   const jobData = useSelector(state => state.jobDetailReducer.jobData);
   const comments = useSelector(state => state.jobDetailReducer.comments);
   const jobId = props.match.params.jobId;
-
   const input = useRef(null);
+  const dispatch = useDispatch();
 
   const [newComment, setNewComment] = useState({
     content: "",
@@ -15,13 +15,12 @@ export default function JobDetailPage(props) {
   });
   const [notification, setNotification] = useState(" ");
 
-  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(actFetchJobDetail(jobId));
   }, []);
 
-
-  const handleOnSubmit = () => {
+  const handleOnSubmit = e => {
+    e.preventDefault();
     if (localStorage.getItem("UserInfo")) {
       if (newComment.content.length > 0) {
         dispatch(actDispatchComment(newComment));
@@ -43,15 +42,9 @@ export default function JobDetailPage(props) {
   const handleRenderForm = () => {
     return (
       <div>
-        <form className="form-inline my-2 my-lg-0 justify-content-center" onSubmit={(e) => {
-          e.preventDefault();
-          handleOnSubmit();
-        }}>
+        <form className="form-inline my-2 my-lg-0 justify-content-center" onSubmit={handleOnSubmit}>
           <textarea className="form-control mr-sm-2 w-50" placeholder="Comment ..." aria-label="Comment" onChange={handleOnChange} ref={input} />
-          <button className="btn btn-success my-2 my-sm-0" onClick={(e) => {
-            e.preventDefault();
-            handleOnSubmit()
-          }}>Send</button>
+          <button className="btn btn-success my-2 my-sm-0" type='submit'>Send</button>
         </form>
         <p className='text-danger'>{notification}</p>
       </div>
@@ -92,7 +85,8 @@ export default function JobDetailPage(props) {
     )
   }
 
-  const handleOrderJob = () => {
+  const handleOrderJob = e => {
+    e.preventDefault();
     if (localStorage.getItem("UserInfo")) {
       if (window.confirm("Order this Job?")) {
         dispatch(actOrderJob(jobId));
@@ -128,10 +122,7 @@ export default function JobDetailPage(props) {
           </div>
           <div className='col-5'>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-            <button className='btn btn-success' onClick={(e) => {
-              e.preventDefault();
-              handleOrderJob();
-            }}>Continue (${jobData.price})</button>
+            <button className='btn btn-success' onClick={handleOrderJob}>Continue (${jobData.price})</button>
           </div>
         </div>
       </div>

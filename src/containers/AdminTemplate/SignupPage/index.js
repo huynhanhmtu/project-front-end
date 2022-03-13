@@ -3,7 +3,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
-import { actSignUp } from './modules/actions';
+import { actResetSignUpMessenger, actSignUp } from './modules/actions';
 
 export default function SignUpPage() {
   const formInput = useRef(null);
@@ -23,11 +23,10 @@ export default function SignUpPage() {
   const handleOnchange = e => {
     setInfo({ ...info, [e.target.name]: e.target.value });
   }
-  console.log(info);
 
   useEffect(() => {
     return () => {
-      formInput.current.reset();
+      dispatch(actResetSignUpMessenger());
     };
   }, []);
 
@@ -73,7 +72,7 @@ export default function SignUpPage() {
   return (
     <div className='m-auto col-5 py-3'>
       <h4 className='text-center'>Sign Up</h4>
-      <form onSubmit={handleSubmit} ref={formInput}>
+      <form id='signup' onSubmit={handleSubmit} ref={formInput}>
         <div className="form-group">
           <input className="form-control" type="text" name="name" placeholder='Full name' onChange={handleOnchange} />
         </div>
@@ -145,19 +144,18 @@ export default function SignUpPage() {
           <select className="custom-select" name='gender' disabled>
             <option value="male" className='selected'>Male</option>
             <option value="female">Female</option>
+            <option value="other">Other</option>
           </select>
         </div>
         <div className="form-group text-center mt-3">
-          <button className="btn btn-primary" onClick={() => {
-            formInput.current.click()
-          }}>Sign Up</button>
+          <button className="btn btn-primary" type='submit'>Sign Up</button>
         </div>
         <div>
           {handleLoading()}
         </div>
         <div className='text-center'>
           <Link className='p-3' to="/login">Login</Link>
-          <Link className='p-3' to="/">Go to Homepage</Link>
+          <Link className='p-3' to="/">Back to Homepage</Link>
         </div>
       </form>
     </div>

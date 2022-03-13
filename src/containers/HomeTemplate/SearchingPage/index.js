@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { actSearchJobs } from '../HomePage/modules/actions';
 
 const MAX_TITLE_LENGTH = 35;
 
-export default function SearchingPage() {
+export default function SearchingPage(props) {
   const preKeyword = useSelector(state => state.searchingReducer.keyword);
   const keyword = localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : preKeyword;
   const searchingList = useSelector(state => state.searchingReducer.store);
@@ -48,7 +48,7 @@ export default function SearchingPage() {
         <img style={{ height: 200 }} src='https://fiverr-res.cloudinary.com/npm-assets/@fiverr/search_perseus/apps/empty-search-results.229c0d3.png'></img>
         <h5>No Results Found For Your Search</h5>
         <p>Try a new search or get a free quote for your project from our community of freelancers.</p>
-        <Link className="btn btn-success" to="/signup" >Get a Free Quote</Link>
+        <a onClick={() => { props.history.goBack() }} >Go back</a>
       </div>
     );
   }

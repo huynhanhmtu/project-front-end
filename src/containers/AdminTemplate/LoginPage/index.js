@@ -56,7 +56,7 @@ export default function LoginPage(props) {
               <input type="password" className="form-control" name="password" autoComplete="on" onChange={handleOnChange} />
             </div>
             <div className='text-center'>
-              <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Login</button>
+              <button type="submit" className="btn btn-primary">Login</button>
             </div>
             <div className='text-center'>
               <Link to="/signup" className='p-3'>Sign Up</Link>
@@ -65,7 +65,6 @@ export default function LoginPage(props) {
           </form>
           <div className='font-italic'>
             <p>Example:</p>
-            {/* <p>(Admin): demo000 - 123123</p> */}
             <p>(Client): huynhanh.mtu@gmail.com - 123456 (_id: 622d51d1f85597001ca8440a)</p>
           </div>
           {notifications()}

@@ -5,26 +5,26 @@ const initialState = {
   loading: false,
 }
 
-const signUpReducer = (state = initialState, action) => {
+const modalReducer = (state = initialState, action) => {
   const payload = action.payload;
 
   switch (action.type) {
-    case ActionTypes.SIGN_UP_REQUEST: {
+    case ActionTypes.MODAL_REQUEST: {
       state.message = null;
       state.loading = true;
       return { ...state }
     }
-    case ActionTypes.SIGN_UP_SUCCESS: {
+    case ActionTypes.MODAL_SUCCESS: {
       state.loading = false;
-      state.message = "Sign up successfully!";
+      state.message = "Create account successfully!";
       return { ...state }
     }
-    case ActionTypes.SIGN_UP_FAILED: {
+    case ActionTypes.MODAL_FAILED: {
       state.loading = false;
       state.message = payload.response.data.message;
       return { ...state }
     }
-    case ActionTypes.SIGN_UP_RESET: {
+    case ActionTypes.MODAL_RESET: {
       state.message = null;
       return { ...state }
     }
@@ -33,4 +33,4 @@ const signUpReducer = (state = initialState, action) => {
   }
 }
 
-export default signUpReducer;
+export default modalReducer;
