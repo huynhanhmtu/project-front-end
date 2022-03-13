@@ -1,6 +1,7 @@
 import Loading from 'components/Loading';
 import React, { useEffect, useRef, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { actSignUp } from './modules/actions';
 
@@ -12,16 +13,23 @@ export default function SignUpPage() {
     email: "",
     password: "",
     phone: "",
-    skill: "",
-    certification: "",
     birthday: "",
-    gender: true, //?
+    skill: [],
+    certification: [],
+    gender: false, //?
     type: "CLIENT",
   });
 
-  const handleOnchange = (e) => {
-    setInfo({ ...info, [e.target.name]: e.target.value })
+  const handleOnchange = e => {
+    setInfo({ ...info, [e.target.name]: e.target.value });
   }
+  console.log(info);
+
+  useEffect(() => {
+    return () => {
+      formInput.current.reset();
+    };
+  }, []);
 
   const handleSubmit = e => {
     e.preventDefault();
@@ -40,48 +48,100 @@ export default function SignUpPage() {
     return message && <div className='alert alert-danger mt-3'>{message}</div>
   }
 
-  useEffect(() => {
-    return () => {
-      formInput.current.reset();
-    };
-  }, []);
+  const handleChangeSkill = () => {
+    const skillChecked = [];
+    document.querySelectorAll(".checkbox-skill").forEach(checkbox => {
+      if (checkbox.checked) {
+        skillChecked.push(checkbox.value);
+      }
+    });
+    setInfo({ ...info, skill: skillChecked });
+  }
+  const handleChangeCert = () => {
+    const certChecked = [];
+    document.querySelectorAll(".checkbox-cert").forEach(checkbox => {
+      if (checkbox.checked) {
+        certChecked.push(checkbox.value);
+      }
+    });
+    setInfo({ ...info, certification: certChecked });
+  }
 
   if (localStorage.getItem("UserInfo")) {
     return <Redirect to="/"></Redirect>
   }
   return (
-    <div className='m-auto col-5 mt-3'>
+    <div className='m-auto col-5 py-3'>
+      <h4 className='text-center'>Sign Up</h4>
       <form onSubmit={handleSubmit} ref={formInput}>
         <div className="form-group">
-          <span>Full name</span>
-          <input className="form-control" type="text" name="name" onChange={handleOnchange} />
+          <input className="form-control" type="text" name="name" placeholder='Full name' onChange={handleOnchange} />
         </div>
         <div className="form-group">
-          <span>Email</span>
-          <input className="form-control" type="email" name="email" onChange={handleOnchange} />
+          <input className="form-control" type="email" name="email" placeholder='Email' onChange={handleOnchange} />
         </div>
         <div className="form-group">
-          <span>Password</span>
-          <input className="form-control" type="password" name="password" onChange={handleOnchange} />
+          <input className="form-control" type="password" name="password" autoComplete="on" placeholder='New password' onChange={handleOnchange} />
         </div>
         <div className="form-group">
-          <span>Phone</span>
-          <input className="form-control" type="tel" name="phone" onChange={handleOnchange} />
+          <input className="form-control" type="tel" name="phone" placeholder='Mobile number' onChange={handleOnchange} />
         </div>
         <div className="form-group">
-          <span>Skill</span>
-          <input className="form-control" type="checkbox" name="skill" onChange={handleOnchange} />
+          <label>Skill</label>
+          <div className='d-flex justify-content-around'>
+            <div>
+              <label>WEB</label>
+              <input className="ml-2 checkbox-skill" type="checkbox" value="WEB" onChange={handleChangeSkill} />
+            </div>
+            <div>
+              <label>DESIGN</label>
+              <input className="ml-2 checkbox-skill" type="checkbox" value="DESIGN" onChange={handleChangeSkill} />
+            </div>
+            <div>
+              <label>GAMING</label>
+              <input className="ml-2 checkbox-skill" type="checkbox" value="GAMING" onChange={handleChangeSkill} />
+            </div>
+            <div>
+              <label>MOBILE</label>
+              <input className="ml-2 checkbox-skill" type="checkbox" value="MOBILE" onChange={handleChangeSkill} />
+            </div>
+            <div>
+              <label>REACT</label>
+              <input className="ml-2 checkbox-skill" type="checkbox" value="REACT" onChange={handleChangeSkill} />
+            </div>
+          </div>
         </div>
         <div className="form-group">
-          <span>Certification</span>
-          <input className="form-control" type="checkbox" name="certification" onChange={handleOnchange} />
+          <label>Certification</label>
+          <div className='d-flex justify-content-around'>
+            <div>
+              <label>DIB</label>
+              <input className="ml-2 checkbox-cert" type="checkbox" value="DIB" onChange={handleChangeCert} />
+            </div>
+            <div>
+              <label>PYNOW</label>
+              <input className="ml-2 checkbox-cert" type="checkbox" value="PYNOW" onChange={handleChangeCert} />
+            </div>
+            <div>
+              <label>AWS</label>
+              <input className="ml-2 checkbox-cert" type="checkbox" value="AWS" onChange={handleChangeCert} />
+            </div>
+            <div>
+              <label>CCNA</label>
+              <input className="ml-2 checkbox-cert" type="checkbox" value="CCNA" onChange={handleChangeCert} />
+            </div>
+            <div>
+              <label>IT</label>
+              <input className="ml-2 checkbox-cert" type="checkbox" value="IT" onChange={handleChangeCert} />
+            </div>
+          </div>
         </div>
         <div className="form-group">
-          <span>Birthday</span>
+          <label>Birthday</label>
           <input className="form-control" type="date" name="birthday" onChange={handleOnchange} />
         </div>
         <div className="form-group">
-          <span>Gender</span>
+          <label>Gender</label>
           <select className="custom-select" name='gender' disabled>
             <option value="male" className='selected'>Male</option>
             <option value="female">Female</option>
@@ -94,6 +154,10 @@ export default function SignUpPage() {
         </div>
         <div>
           {handleLoading()}
+        </div>
+        <div className='text-center'>
+          <Link className='p-3' to="/login">Login</Link>
+          <Link className='p-3' to="/">Go to Homepage</Link>
         </div>
       </form>
     </div>

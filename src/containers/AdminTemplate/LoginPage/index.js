@@ -45,7 +45,7 @@ export default function LoginPage(props) {
     <div className="container">
       <div className="row py-3">
         <div className="col-md-5 mx-auto">
-          <h4 className='text-center'>Login Page</h4>
+          <h4 className='text-center'>Login</h4>
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label>Email</label>
@@ -57,7 +57,10 @@ export default function LoginPage(props) {
             </div>
             <div className='text-center'>
               <button type="submit" className="btn btn-primary" onClick={handleSubmit}>Login</button>
-              <Link to="/" className='d-block mt-3'>Back to Homepage</Link>
+            </div>
+            <div className='text-center'>
+              <Link to="/signup" className='p-3'>Sign Up</Link>
+              <Link to="/" className='p-3'>Back to Homepage</Link>
             </div>
           </form>
           <div className='font-italic'>
