@@ -54,7 +54,7 @@ export default function NavbarHome() {
       return (
         <>
           <li className="nav-item">
-            <Link className="nav-link" to="/dashboard">Dashboard</Link>
+            <Link className="nav-link" to="/users-management">Dashboard</Link>
           </li>
           <a className="nav-link px-1" style={{ cursor: "pointer" }} onClick={() => {
             if (window.confirm("Logout?")) {
@@ -69,7 +69,7 @@ export default function NavbarHome() {
         <>
           {/* Test dashboard (don't have an Admin account) */}
           <li className="nav-item">
-            <Link className="nav-link text-danger" to="/dashboard" >(Test dashboard)</Link>
+            <Link className="nav-link text-danger" to="/users-management" >(Test dashboard)</Link>
           </li>
 
           <li className="nav-item">

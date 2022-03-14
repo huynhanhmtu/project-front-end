@@ -6,6 +6,7 @@ import jobDetailReducer from "containers/HomeTemplate/JobDetailsPage/modules/red
 import userLoginReducer from "containers/AdminTemplate/LoginPage/modules/reducer";
 import signUpReducer from "containers/AdminTemplate/SignUpPage/modules/reducer";
 import modalReducer from "containers/AdminTemplate/_components/Modal/modules/reducer";
+import usersManagementReducer from "containers/AdminTemplate/UsersManagementPage/modules/reducer";
 
 export const rootReducer = combineReducers({
   jobTypesReducer,
@@ -14,5 +15,6 @@ export const rootReducer = combineReducers({
   jobDetailReducer,
   userLoginReducer,
   signUpReducer,
-  modalReducer
+  modalReducer,
+  usersManagementReducer,
 });

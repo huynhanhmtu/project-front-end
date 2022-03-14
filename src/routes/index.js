@@ -1,7 +1,6 @@
 import { lazy } from "react"; //Lazy loading để sau khi hoàn thành đầy đủ các chức năng
 import { Route } from "react-router-dom";
 import AdminTemplate from "containers/AdminTemplate";
-import DashboardPage from "containers/AdminTemplate/DashboardPage";
 import LoginPage from "containers/AdminTemplate/LoginPage";
 import HomeTemplate from "containers/HomeTemplate";
 import HomePage from "containers/HomeTemplate/HomePage";
@@ -12,6 +11,9 @@ import SearchingPage from "containers/HomeTemplate/SearchingPage";
 import SubJobsPage from "containers/HomeTemplate/SubJobsPage";
 import UserPage from "containers/HomeTemplate/UserPage";
 import SignUpPage from "containers/AdminTemplate/SignUpPage";
+import UsersManagementPage from "containers/AdminTemplate/UsersManagementPage";
+import ServicesManagementPage from "containers/AdminTemplate/ServicesManagementPage";
+import CatalogManagementPage from "containers/AdminTemplate/CatalogManagementPage";
 
 const routesHome = [
   {
@@ -70,16 +72,28 @@ const routesUser = [
     path: "/signup",
     component: SignUpPage
     // component: lazy(() => { import("containers/AdminTemplate/SignUpPage") })
-  }
+  },
 ];
 
 const routesAdmin = [
   {
     exact: true,
-    path: "/dashboard",
-    component: DashboardPage
-    // component: lazy(() => { import("containers/AdminTemplate/DashboardPage") })
-  }
+    path: "/users-management",
+    component: UsersManagementPage
+    // component: lazy(() => { import("containers/AdminTemplate/UsersManagementPage") })
+  },
+  {
+    exact: true,
+    path: "/services-management",
+    component: ServicesManagementPage
+    // component: lazy(() => { import("containers/AdminTemplate/ServicesManagementPage") })
+  },
+  {
+    exact: true,
+    path: "/catalog-management",
+    component: CatalogManagementPage
+    // component: lazy(() => { import("containers/AdminTemplate/CatalogManagementPage") })
+  },
 ];
 
 const renderRoutesHome = () => {

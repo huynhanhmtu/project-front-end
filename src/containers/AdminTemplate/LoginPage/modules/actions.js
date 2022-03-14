@@ -12,7 +12,7 @@ export const actLogin = (userInfo, history) => {
           history.goBack();
         } else if (result.data.user.role === "ADMIN") {
           dispatch(actLoginSuccess(result.data));
-          history.replace("/dashboard");
+          history.replace("/users-management");
         } else {
           return Promise.reject({
             response: {

@@ -3,7 +3,8 @@ import React, { useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { actAddUser, actResetModal } from './modules/actions';
 
-export default function AdminModal() {
+export default function AdminModal(props) {
+  const method = props.method;
   const form = useRef(null);
   const message = useSelector(state => state.modalReducer.message);
   const loading = useSelector(state => state.modalReducer.loading);
@@ -70,7 +71,7 @@ export default function AdminModal() {
         <div className="modal-content">
           <div className="modal-header">
             <h5 className="modal-title">
-              ADD USER <span className='text-danger'>(In progress)</span>
+              {method} USER <span className='text-danger'>(In progress)</span>
             </h5>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => { form.current.reset(); dispatch(actResetModal()) }}>
               <span aria-hidden="true">×</span>
@@ -160,7 +161,7 @@ export default function AdminModal() {
                 </select>
               </div>
               <div className="form-group text-center mt-3">
-                <button className="btn btn-primary" type='submit'>Add User</button>
+                <button className="btn btn-primary" type='submit'>{method}</button>
               </div>
               <div>
                 {handleLoading()}

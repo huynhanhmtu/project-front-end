@@ -11,3 +11,12 @@ body {
 a {
   cursor: pointer;
 }
+.sidebar-active {
+  color: #fff;
+  background-color: #007bff;
+  border-color: #007bff;
+  border-radius: 4px;
+}
+.sidebar-active:hover {
+  color: #fff;
+}

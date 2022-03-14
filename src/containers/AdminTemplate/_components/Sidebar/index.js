@@ -1,7 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
-import AdminModal from '../Modal';
 
 export default function AdminSidebar() {
   const history = useHistory();
@@ -14,23 +14,27 @@ export default function AdminSidebar() {
 
   return (
     <div>
-      <button className='btn btn-primary w-100' onClick={() => { history.push("/dashboard") }}>DASHBOARD</button>
+      <h5 className='text-center'>Dashboard</h5>
       <ul className="nav flex-column">
         <li className="nav-item">
-          <NavLink exact activeClassName="active" className="nav-link" to="/">Homepage</NavLink>
+          <Link className="nav-link" to="/">Homepage</Link>
         </li>
         <li className="nav-item">
-          <NavLink className="nav-link" to="/user-page">User Info</NavLink>
+          <Link className="nav-link" to="/user-page">Admin Info</Link>
         </li>
-        <li className="nav-item">
-          {/* Thay đổi chức năng thành modal */}
-          <a className="nav-link" data-toggle="modal" data-target="#addModal">Add User</a>
-        </li>
-        <li className="nav-item">
-          <a className="nav-link" style={{ cursor: "pointer" }} onClick={handleLogout}>Logout</a>
-        </li>
+        <div className='my-4'>
+          <li className="nav-item">
+            <NavLink activeClassName='sidebar-active' className="nav-link" to="/users-management">Users Management</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink activeClassName='sidebar-active' className="nav-link" to="/services-management">Services Management</NavLink>
+          </li>
+          <li className="nav-item">
+            <NavLink activeClassName='sidebar-active' className="nav-link" to="/catalog-management">Catalog Management</NavLink>
+          </li>
+        </div>
+        <button className="btn btn-light" onClick={handleLogout}>Logout</button>
       </ul>
-      <AdminModal />
     </div>
   )
 }
