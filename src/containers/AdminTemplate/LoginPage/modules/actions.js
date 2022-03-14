@@ -9,9 +9,11 @@ export const actLogin = (userInfo, history) => {
       .then(result => {
         if (result.data.user.role === "CLIENT") {
           dispatch(actLoginSuccess(result.data));
+          localStorage.setItem("UserInfo", JSON.stringify(result.data));
           history.goBack();
-        } else if (result.data.user.role === "ADMIN") {
+        } else if (result.data.user.role == "ADMIN") {
           dispatch(actLoginSuccess(result.data));
+          localStorage.setItem("UserInfo", JSON.stringify(result.data));
           history.replace("/users-management");
         } else {
           return Promise.reject({
@@ -22,7 +24,6 @@ export const actLogin = (userInfo, history) => {
             }
           });
         }
-        localStorage.setItem("UserInfo", JSON.stringify(result.data));
       })
       .catch(error => {
         dispatch(actLoginFailed(error));

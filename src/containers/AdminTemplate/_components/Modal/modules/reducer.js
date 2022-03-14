@@ -14,12 +14,17 @@ const modalReducer = (state = initialState, action) => {
       state.loading = true;
       return { ...state }
     }
-    case ActionTypes.MODAL_SUCCESS: {
+    case ActionTypes.MODAL_ADD_SUCCESS: {
       state.loading = false;
-      state.message = "Create account successfully!";
+      state.message = "Create account successfully! Refresh & change.";
       return { ...state }
     }
-    case ActionTypes.MODAL_FAILED: {
+    case ActionTypes.MODAL_EDIT_SUCCESS: {
+      state.loading = false;
+      state.message = "Edit successfully! Refresh & change.";
+      return { ...state }
+    }
+    case ActionTypes.MODAL_ADD_FAILED || ActionTypes.MODAL_EDIT_FAILED: {
       state.loading = false;
       state.message = payload.response.data.message;
       return { ...state }

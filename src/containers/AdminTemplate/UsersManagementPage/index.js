@@ -6,6 +6,8 @@ import { actDeleteUser, actFetchUsersData } from './modules/actions';
 export default function UsersManagementPage() {
   const dispatch = useDispatch();
   const [method, setMethod] = useState("ADD");
+  const [userEdit, setUserEdit] = useState(null);
+
   const [searchType, setSearchType] = useState("name");
 
   const usersData = useSelector(state => state.usersManagementReducer.data);
@@ -27,7 +29,10 @@ export default function UsersManagementPage() {
           <td>{user.email}</td>
           <td>{user.role}</td>
           <td>
-            <button className='btn btn-info mx-1' data-toggle="modal" data-target="#addModal" onClick={() => { setMethod("EDIT") }}>Edit</button>
+            <button className='btn btn-info mx-1' data-toggle="modal" data-target="#addModal" onClick={() => {
+              setMethod("EDIT");
+              setUserEdit(user)
+            }}>Edit</button>
             <button className='btn btn-danger mx-1' onClick={handleDeleteUser(user._id)}>×</button>
           </td>
         </tr>
@@ -51,9 +56,12 @@ export default function UsersManagementPage() {
           <input className="form-control m-0" type="search" placeholder="Find User" aria-label="Search" />
           <button className="btn btn-outline-success m-0" type="submit">Search</button>
         </form>
-        <button className="btn btn-primary" data-toggle="modal" data-target="#addModal">Add User</button>
+        <button className="btn btn-primary" data-toggle="modal" data-target="#addModal" onClick={() => {
+          setMethod("ADD");
+          setUserEdit(null)
+        }}>Add User</button>
       </div>
-      <AdminModal method={method} />
+      <AdminModal method={method} userEdit={userEdit} />
 
       <table className="table table-striped mt-5 text-center">
         <thead>

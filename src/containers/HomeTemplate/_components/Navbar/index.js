@@ -67,11 +67,6 @@ export default function NavbarHome() {
     } else if (localStorage.getItem("UserInfo") && JSON.parse(localStorage.getItem("UserInfo")).user.role === "CLIENT") {
       return (
         <>
-          {/* Test dashboard (don't have an Admin account) */}
-          <li className="nav-item">
-            <Link className="nav-link text-danger" to="/users-management" >(Test dashboard)</Link>
-          </li>
-
           <li className="nav-item">
             <Link className="nav-link" to="/user-page" >User Info</Link>
           </li>
