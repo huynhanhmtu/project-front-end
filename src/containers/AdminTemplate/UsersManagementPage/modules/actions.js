@@ -36,7 +36,8 @@ export const actDeleteUser = id => {
     dispatch(actDeleteUserRequest());
     api.delete(`/api/users/${id}`)
       .then(result => {
-        dispatch(actDeleteUserSuccess(result.data));
+        dispatch(actDeleteUserSuccess());
+        alert("Deleted successfully! Refresh & change.")
       })
       .catch(error => {
         dispatch(actDeleteUserFailed(error));

@@ -44,7 +44,6 @@ export default function AdminModal(props) {
       setState({
         name: userEdit.name,
         email: userEdit.email,
-        // password: "",
         phone: userEdit.phone,
         birthday: userEdit.birthday,
         skill: userEdit.skill,

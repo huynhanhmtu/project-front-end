@@ -17,7 +17,9 @@ export default function UsersManagementPage() {
   }, []);
 
   const handleDeleteUser = id => {
-    // dispatch(actDeleteUser(id));
+    if(window.confirm("Delete?")){
+      dispatch(actDeleteUser(id));
+    }
   }
 
   const handleRenderTable = () => {
@@ -33,7 +35,8 @@ export default function UsersManagementPage() {
               setMethod("EDIT");
               setUserEdit(user)
             }}>Edit</button>
-            <button className='btn btn-danger mx-1' onClick={handleDeleteUser(user._id)}>×</button>
+            <button className='btn btn-danger mx-1' onClick={() => { handleDeleteUser(user._id) }
+            }>×</button>
           </td>
         </tr>
       )
