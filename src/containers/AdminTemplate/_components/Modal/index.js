@@ -129,9 +129,7 @@ export default function AdminModal(props) {
       <div className="modal-dialog" role="document">
         <div className="modal-content">
           <div className="modal-header">
-            <h5 className="modal-title">
-              {method} USER <span className='text-danger'>(In progress)</span>
-            </h5>
+            <h5 className="modal-title">{method} USER</h5>
             <button type="button" className="close" data-dismiss="modal" aria-label="Close" onClick={() => {
               handleResetForm();
             }}>
@@ -234,3 +232,9 @@ export default function AdminModal(props) {
     </div >
   )
 }
+
+
+{/* <div className="custom-control custom-checkbox">
+  <input type="checkbox" class="custom-control-input" id="customCheck1">
+  <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+</div> */}

@@ -8,15 +8,12 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
 }
+.container{
+  max-width: 1400px;
+}
 a {
   cursor: pointer;
 }
-.sidebar-active {
-  color: #fff;
-  background-color: #007bff;
-  border-color: #007bff;
-  border-radius: 4px;
-}
-.sidebar-active:hover {
-  color: #fff;
+hr {
+  margin: 0;
 }

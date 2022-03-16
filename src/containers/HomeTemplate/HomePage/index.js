@@ -1,4 +1,5 @@
 import React from 'react';
+import HomeCarousel from '../_components/Carousel';
 
 export default function HomePage(props) {
   const handleOnChange = (e) => {
@@ -14,7 +15,7 @@ export default function HomePage(props) {
     <>
       <header>
         <div>
-          Carousel
+          <HomeCarousel />
           <form className="form-inline my-2 my-lg-0" onSubmit={handleOnSubmit}>
             <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" onChange={handleOnChange} />
             <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>

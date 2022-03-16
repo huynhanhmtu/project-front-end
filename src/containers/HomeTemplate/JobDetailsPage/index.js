@@ -104,7 +104,7 @@ export default function JobDetailPage(props) {
         <div className='row'>
           <div className='col-7'>
             <h5 style={{ textTransform: "capitalize" }}>{jobData.name}</h5>
-            <img className='w-100' src={jobData.image}></img>
+            <img className='w-100' src={jobData.image ? jobData.image : "https://images.squarespace-cdn.com/content/v1/562e3dade4b0c308fbc94d7b/1603322266670-Y6WK1MCXQ09I5GUT4TFN/coming+soon+yellow.jpg?format=1500w"}></img>
             <h5>About This Gig</h5>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.

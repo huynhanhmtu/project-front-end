@@ -1,23 +1,30 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import AdminModal from '../_components/Modal'
+import { removeVietnameseTones } from '../_components/Modal/validation';
 import { actDeleteUser, actFetchUsersData } from './modules/actions';
 
 export default function UsersManagementPage() {
+  const searchInput = useRef(null);
   const dispatch = useDispatch();
-  const [method, setMethod] = useState("ADD");
+  const [method, setMethod] = useState("");
   const [userEdit, setUserEdit] = useState(null);
 
-  const [searchType, setSearchType] = useState("name");
+  const data = useSelector(state => state.usersManagementReducer.data);
+  const [usersData, setUsersData] = useState(null);
 
-  const usersData = useSelector(state => state.usersManagementReducer.data);
+  const [searchType, setSearchType] = useState("all");
 
   useEffect(() => {
     dispatch(actFetchUsersData());
   }, []);
 
+  useEffect(() => {
+    setUsersData(data);
+  }, [data]);
+
   const handleDeleteUser = id => {
-    if(window.confirm("Delete?")){
+    if (window.confirm("Delete?")) {
       dispatch(actDeleteUser(id));
     }
   }
@@ -43,20 +50,57 @@ export default function UsersManagementPage() {
     })
   }
 
+  const handleSearch = () => {
+    let searchingData = [];
+    const keyword = removeVietnameseTones(searchInput.current.value).toLowerCase();
+    switch (searchType) {
+      case "name": {
+        searchingData = data.filter(user => {
+          if (user.name) {
+            return removeVietnameseTones(user.name.toLowerCase()).indexOf(keyword) >= 0
+          }
+        });
+        return setUsersData(searchingData);
+      }
+      case "email": {
+        searchingData = data.filter(user => {
+          if (user.email) {
+            return removeVietnameseTones(user.email.toLowerCase()).indexOf(keyword) >= 0
+          }
+        });
+        return setUsersData(searchingData);
+      }
+      case "role": {
+        searchingData = data.filter(user => {
+          if (user.role) {
+            return removeVietnameseTones(user.role.toLowerCase()).indexOf(keyword) >= 0
+          }
+        });
+        return setUsersData(searchingData);
+      }
+      default: {
+        return setUsersData(data);
+      }
+    }
+  }
+
   return (
     <div>
       <h5 className='text-center mb-3'>USERS MANAGEMENT</h5>
-      <p>In progress...</p>
       <div className='d-flex justify-content-between mx-5'>
-        <form className="form-inline my-2 my-lg-0">
+        <form className="form-inline my-2 my-lg-0" onSubmit={(e) => {
+          e.preventDefault();
+          handleSearch(searchType)
+        }}>
           <div className="form-group">
             <select className="form-control" onChange={(e) => { setSearchType(e.target.value) }}>
+              <option>All</option>
               <option value="name">By Name</option>
               <option value="email">By Email</option>
               <option value="role">By Role</option>
             </select>
           </div>
-          <input className="form-control m-0" type="search" placeholder="Find User" aria-label="Search" />
+          <input className="form-control m-0" type="search" placeholder="Find User" aria-label="Search" ref={searchInput} />
           <button className="btn btn-outline-success m-0" type="submit">Search</button>
         </form>
         <button className="btn btn-primary" data-toggle="modal" data-target="#addModal" onClick={() => {

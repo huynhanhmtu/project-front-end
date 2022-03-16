@@ -1,4 +1,29 @@
-.dropdown:hover .dropdown-menu {
+nav {
+  font-weight: bold;
+  padding: 8px 0 !important;
+  justify-content: space-between !important;
+}
+nav a {
+  color: #212529;
+}
+.nav-bottom {
+  font-weight: 500;
+}
+.nav-bottom li a {
+  padding: 0 !important;
+}
+.nav-bottom .nav-link{
+  padding: 0.5rem 0 !important;
+}
+.dropdown:hover .dropdown-content {
   display: block;
-  margin-top: 0;
+}
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f5f5f5;
+  z-index: 1;
+  list-style: none;
+  border-radius: 4px;
+  overflow: hidden;
 }
