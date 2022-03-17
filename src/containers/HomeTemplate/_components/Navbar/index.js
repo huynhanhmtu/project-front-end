@@ -94,19 +94,56 @@ export default function NavbarHome() {
     }
   };
 
+
+  const selectALl = items => { return document.querySelectorAll(items) };
+  const select = dom => { return document.querySelector(dom) }
+  window.onbeforeunload = () => {
+    document.documentElement.scrollTo(0, 0);
+  };
+  if (history.location.pathname == "/") {
+    select("#navbar-home")?.classList.add("navbar-home", "navbar-transparent");
+    selectALl(".nav-top .nav-link")?.forEach(nav => nav.classList.add("color-white"));
+    selectALl(".navbar-home>hr").forEach(hr => hr.classList.add("d-none"));
+    select(".navbar-search")?.classList.add("d-none");
+    selectALl(".nav-bottom .nav-link")?.forEach(link => link.classList.add("disabled"));
+    select(".nav-bottom")?.classList.add("nav-collapse");
+  }
+  window.onscroll = () => {
+    if (document.body.scrollTop || history.location.pathname == "/") {
+      if (document.documentElement.scrollTop > -100 && document.documentElement.scrollTop < 100) {
+        select("#navbar-home")?.classList.add("navbar-transparent");
+        selectALl(".nav-top .nav-link")?.forEach(nav => nav.classList.add("color-white"));
+        selectALl(".navbar-home>hr").forEach(hr => hr.classList.add("d-none"));
+      } else if (document.body.scrollTop || document.documentElement.scrollTop >= 100 && document.documentElement.scrollTop < 200) {
+        select("#navbar-home")?.classList.remove("navbar-transparent");
+        selectALl(".nav-top .nav-link")?.forEach(nav => nav.classList.remove("color-white"));
+        selectALl(".navbar-home>hr").forEach(hr => hr.classList.remove("d-none"));
+        select(".navbar-search")?.classList.add("d-none");
+        selectALl(".nav-bottom .nav-link")?.forEach(link => link.classList.add("disabled"));
+        select(".nav-bottom")?.classList.add("nav-collapse");
+        select(".nav-bottom")?.classList.remove("show");
+      } else if (document.body.scrollTop || document.documentElement.scrollTop >= 200) {
+        select(".navbar-search")?.classList.remove("d-none");
+        selectALl(".nav-bottom .nav-link")?.forEach(link => link.classList.remove("disabled"));
+        select(".nav-bottom")?.classList.remove("nav-collapse");
+        select(".nav-bottom")?.classList.add("show");
+      }
+    }
+  }
+
   return (
-    <>
+    <div id='navbar-home'>
       <div className='container'>
-        <nav className="navbar navbar-expand-lg">
+        <nav className="navbar navbar-expand-lg nav-top">
           <div className='d-flex'>
             <Link className="navbar-brand" to="/">
               <svg width="89" height="27" viewBox="0 0 89 27" fill="none" xmlns="http://www.w3.org/2000/svg"><g fill="#404145"><path d="m81.6 13.1h-3.1c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-13.4h-2.5c-2 0-3.1 1.5-3.1 4.1v9.3h-6v-18.4h6v2.8c1-2.2 2.3-2.8 4.3-2.8h7.3v2.8c1-2.2 2.3-2.8 4.3-2.8h2zm-25.2 5.6h-12.4c.3 2.1 1.6 3.2 3.7 3.2 1.6 0 2.7-.7 3.1-1.8l5.3 1.5c-1.3 3.2-4.5 5.1-8.4 5.1-6.5 0-9.5-5.1-9.5-9.5 0-4.3 2.6-9.4 9.1-9.4 6.9 0 9.2 5.2 9.2 9.1 0 .9 0 1.4-.1 1.8zm-5.7-3.5c-.1-1.6-1.3-3-3.3-3-1.9 0-3 .8-3.4 3zm-22.9 11.3h5.2l6.6-18.3h-6l-3.2 10.7-3.2-10.8h-6zm-24.4 0h5.9v-13.4h5.7v13.4h5.9v-18.4h-11.6v-1.1c0-1.2.9-2 2.2-2h3.5v-5h-4.4c-4.3 0-7.2 2.7-7.2 6.6v1.5h-3.4v5h3.4z"></path></g><g fill="#1dbf73"><path d="m85.3 27c2 0 3.7-1.7 3.7-3.7s-1.7-3.7-3.7-3.7-3.7 1.7-3.7 3.7 1.7 3.7 3.7 3.7z"></path></g></svg>
             </Link>
-            <form className="form-inline my-2 my-lg-0" onSubmit={(e) => {
+            <form className="form-inline my-2 my-lg-0 navbar-search" onSubmit={(e) => {
               e.preventDefault();
               handleOnSubmit();
             }}>
-              <input className="form-control mr-sm-2" style={{minWidth:400}} type="search" placeholder={localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "Find Services"} aria-label="Search" onChange={handleOnChange} />
+              <input className="form-control mr-sm-2" style={{ minWidth: 400 }} type="search" placeholder={localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "Find Services"} aria-label="Search" onChange={handleOnChange} />
               <button className="btn btn-outline-success" type='submit'>Search</button>
             </form>
           </div>
@@ -117,7 +154,7 @@ export default function NavbarHome() {
             <div className="collapse navbar-collapse mr-4" id="navbarHome">
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item">
-                  <NavLink className="nav-link" style={{color:"#1e1692"}} to="/" >FiverPro</NavLink>
+                  <NavLink className="nav-link nav-active" to="/" >FiverPro</NavLink>
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/" >Explore</Link>
@@ -141,14 +178,14 @@ export default function NavbarHome() {
       </div >
       <hr />
       <div className='container'>
-        <nav className="navbar navbar-expand-lg nav-bottom">
+        <nav className="navbar navbar-expand-lg m-0 p-0 nav-bottom">
           <div className="navbar-nav mr-auto w-100 justify-content-between">
             {handleRenderJobs()}
           </div>
         </nav>
       </div>
       <hr />
-    </>
+    </div>
   )
 }
 

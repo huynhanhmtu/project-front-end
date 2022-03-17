@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Charm:wght@700&family=Rochester&display=swap");
+
+.home-search {
+  max-width: 650px;
+  top: 50%;
+  left: 0;
+  padding: 0 15px;
+  transform: translateY(-50%);
+  color: #fff;
+}
+.home-search p {
+  margin: 2rem 0;
+}
+.home-search input {
+  min-width: 400px;
+}
+.home-search button {
+  color: #fff;
+}
+.home-search span {
+  background-color: transparent;
+  line-height: 24px;
+  font-weight: 600;
+  color: #fff;
+  padding: 1px 12px 0;
+  border: 1px solid #fff;
+  border-radius: 40px;
+  transition: all 0.2s ease-in-out;
+  margin: 0 0.5rem;
+}
+.home-search span:hover {
+  background-color: #fff;
+  color: #404145;
+  cursor: pointer;
+}
+.home-title {
+  font-size: 48px;
+  line-height: 56px;
+}
+.home-title i {
+  font-family: "Rochester", cursive;
+  font-size: 55px;
+}
+.home-partner {
+  background-color: #fafafa;
+  color: #b5b6ba;
+}
+.home-partner .container {
+  padding: 1rem 0;
+}
+.home-partner p,
+.home-partner img {
+  font-weight: 500;
+  padding: 0 2rem;
+}
+.home-page h2 {
+  margin: 0;
+  padding-bottom: 24px;
+  font-size: 32px;
+  line-height: 120%;
+  font-weight: 700;
+}
+.home-page h5 {
+  font-weight: 500;
+}
+.home-slider-container {
+  padding: 90px 0;
+}
+
+.home-introduce {
+  background-color: #f1fdf7;
+  padding-top: 90px;
+  padding-bottom: 90px;
+  font-size: 1.1rem;
+}
+.home-introduce span {
+  color: #404145;
+}
+.home-introduce-left {
+  padding-left: 0;
+  padding-right: 8%;
+}
+.home-introduce-right {
+  position: relative;
+}
+.home-introduce-right::after {
+  content: "";
+  display: inline-block;
+  background: url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/desktop-play-button.c1196d6.png)
+    no-repeat;
+  background-size: 80px;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  z-index: 0;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.home-introduce-right picture {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}

@@ -48,7 +48,7 @@ export default function FooterHome() {
           <div className='d-flex align-items-center'>
             <button><i className="fa fa-globe"></i> English</button>
             <button>US$ USD</button>
-            <span className='footer-icon m-0' style={{fontSize:"1.5rem"}}><i class="fa fa-universal-access"></i></span>
+            <span className='footer-icon m-0' style={{fontSize:"1.5rem"}}><i className="fa fa-universal-access"></i></span>
           </div>
         </div>
       </div>

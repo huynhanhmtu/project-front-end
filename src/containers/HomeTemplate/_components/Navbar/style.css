@@ -6,13 +6,19 @@ nav {
 nav a {
   color: #212529;
 }
+.nav-active {
+  color: #0056b3;
+}
+.color-white {
+  color: #fff;
+}
 .nav-bottom {
   font-weight: 500;
 }
 .nav-bottom li a {
   padding: 0 !important;
 }
-.nav-bottom .nav-link{
+.nav-bottom .nav-link {
   padding: 0.5rem 0 !important;
 }
 .dropdown:hover .dropdown-content {
@@ -26,4 +32,29 @@ nav a {
   list-style: none;
   border-radius: 4px;
   overflow: hidden;
+}
+.navbar-home {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  z-index: 3;
+
+  background-color: #fff;
+}
+.navbar-transparent {
+  background-color: transparent;
+  transition: all 0.5s;
+}
+.nav-collapse {
+  height: 0;
+  opacity: 0;
+  transform: rotateX(90deg);
+}
+.show {
+  height: auto;
+  opacity: 1;
+  transform: rotateX(0);
+  transition: all 0.5s;
 }

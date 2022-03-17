@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import ScrollToTop from 'react-scroll-to-top';
 import AdminSidebar from './_components/Sidebar';
 
 export default function AdminTemplate(props) {
@@ -16,6 +17,7 @@ export default function AdminTemplate(props) {
       <div className='col-9'>
         <Route exact={exact} path={path} component={component} />
       </div>
+      <ScrollToTop smooth style={{ width: 50, height: 50, backgroundColor:"#ffffffcc" }} />
     </div>
   )
 }
