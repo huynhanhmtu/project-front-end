@@ -58,7 +58,7 @@ export default function LoginPage(props) {
             <div className='text-center'>
               <button type="submit" className="btn btn-primary">Login</button>
             </div>
-            <div className='text-center'>
+            <div className='text-center mt-3'>
               <Link to="/signup" className='p-3'>Sign Up</Link>
               <Link to="/" className='p-3'>Back to Homepage</Link>
             </div>

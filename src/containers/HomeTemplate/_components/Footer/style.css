@@ -1,6 +1,9 @@
 footer{
   color: #7a7d85;
 }
+footer p{
+  color: #212529;
+}
 footer li{
   padding: 0.25rem 0;
   color: #7a7d85;

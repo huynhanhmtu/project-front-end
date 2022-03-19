@@ -43,7 +43,7 @@ export default function ServicesManagementPage() {
         <thead>
           <tr>
             <th scope="col">Job Types</th>
-            <th scope="col">Job Sub-types</th>
+            <th scope="col">Sub-job Types</th>
           </tr>
         </thead>
         <tbody className='text-left'>

@@ -61,6 +61,7 @@
   font-weight: 700;
 }
 .home-page h5 {
+  font-size: 1.2rem;
   font-weight: 500;
 }
 .home-slider-container {
@@ -83,8 +84,8 @@
 .home-introduce-right {
   position: relative;
 }
-.home-introduce-right::after {
-  content: "";
+.home-introduce-right span {
+  cursor: pointer;
   display: inline-block;
   background: url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/desktop-play-button.c1196d6.png)
     no-repeat;
@@ -97,9 +98,33 @@
   left: 50%;
   transform: translate(-50%, -50%);
 }
-.home-introduce-right picture {
+.home-introduce-right img {
+  cursor: pointer;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
+}
+.home-video-bg {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 4;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.65);
+}
+.home-video {
+  position: fixed;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+}
+.home-video video {
+  max-width: 900px;
+}
+.show-video{
+  display: block;
 }

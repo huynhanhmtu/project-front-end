@@ -52,9 +52,15 @@ nav a {
   opacity: 0;
   transform: rotateX(90deg);
 }
-.show {
+.nav-show {
   height: auto;
   opacity: 1;
   transform: rotateX(0);
   transition: all 0.5s;
+}
+.svg-color{
+  fill: #404145;
+}
+.svg-white{
+  fill: #fff;
 }

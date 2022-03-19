@@ -153,7 +153,7 @@ export default function SignUpPage() {
         <div>
           {handleLoading()}
         </div>
-        <div className='text-center'>
+        <div className='text-center mt-3'>
           <Link className='p-3' to="/login">Login</Link>
           <Link className='p-3' to="/">Back to Homepage</Link>
         </div>
