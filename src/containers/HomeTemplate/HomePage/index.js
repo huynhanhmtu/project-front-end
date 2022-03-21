@@ -1,7 +1,8 @@
 import React from 'react';
 import HomeCarousel from '../_components/Carousel';
 import './style.css';
-import HomeSlider from './_components/Slider';
+import HomeServicesSlider from './_components/Slider/ServicesSlider';
+import HomeTestimonialSlider from './_components/Slider/TestimonialSlider';
 
 export default function HomePage(props) {
   const handleOnSubmit = e => {
@@ -61,7 +62,7 @@ export default function HomePage(props) {
       <section className='container'>
         <div className='home-slider-container'>
           <h2>Popular professional services</h2>
-          <HomeSlider />
+          <HomeServicesSlider />
         </div>
       </section>
       <section className='home-introduce'>
@@ -98,8 +99,10 @@ export default function HomePage(props) {
           </div>
         </div>
       </section>
-      <section>
-        Marketplace
+      <section className='container'>
+        <div className='home-slider-container'>
+          <HomeTestimonialSlider />
+        </div>
       </section>
     </section>
   )

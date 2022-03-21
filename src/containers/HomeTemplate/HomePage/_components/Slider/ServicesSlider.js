@@ -4,7 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "./style.css";
 
-export default function HomeSlider() {
+export default function HomeServicesSlider() {
   const settings = {
     infinite: true,
     className: "home-slider",
