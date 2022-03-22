@@ -68,11 +68,14 @@
   padding: 90px 0;
 }
 
-.home-introduce {
+.home-introduce,
+.home-explore {
   background-color: #f1fdf7;
-  padding-top: 90px;
-  padding-bottom: 90px;
+  padding: 90px 0;
   font-size: 1.1rem;
+}
+.home-explore{
+  padding: 90px 0 60px;
 }
 .home-introduce span {
   color: #404145;
@@ -84,7 +87,8 @@
 .home-introduce-right {
   position: relative;
 }
-.home-introduce-right span {
+.home-introduce-right span,
+.slider-testimonial-img span {
   cursor: pointer;
   display: inline-block;
   background: url(https://fiverr-res.cloudinary.com/npm-assets/@fiverr/logged_out_homepage_perseus/apps/desktop-play-button.c1196d6.png)
@@ -105,7 +109,8 @@
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
 }
-.home-video-bg {
+.home-video-bg,
+.testimonial-video-bg {
   display: none;
   position: fixed;
   top: 0;
@@ -115,7 +120,8 @@
   height: 100vh;
   background-color: rgba(0, 0, 0, 0.65);
 }
-.home-video {
+.home-video,
+.testimonial-video {
   position: fixed;
   z-index: 5;
   top: 50%;
@@ -125,6 +131,34 @@
 .home-video video {
   max-width: 900px;
 }
-.show-video{
+.show-video {
   display: block;
+}
+.home-explore-item {
+  position: relative;
+  text-align: center;
+  padding: 30px;
+  width: 20%;
+}
+.home-explore-item img {
+  display: block;
+  width: 48px;
+  height: 48px;
+  margin: 0 auto 15px;
+}
+.home-explore-item a::after {
+  content: "";
+  position: absolute;
+  top: 75px;
+  right: 50%;
+  transform: translateX(50%);
+  padding: 0 0 8px;
+  width: 48px;
+  border-bottom: 2px solid #c5c6c9;
+  transition: all 0.2s ease-in-out;
+}
+.home-explore-item a:hover::after {
+  padding: 0 20px 8px;
+  border-color: #1dbf73;
+  width: 88px;
 }

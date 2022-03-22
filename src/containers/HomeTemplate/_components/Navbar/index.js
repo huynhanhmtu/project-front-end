@@ -22,7 +22,7 @@ export default function NavbarHome() {
 
   const handleRenderJobs = () => {
     return jobs?.map((job, index) => {
-      if (index < 8) { //API(14) error
+      if (index < 9) { //API(14) error
         return (
           <div key={index} className="dropdown">
             <Link className="nav-link" to={`/job-types/${job._id}`} data-toggle="dropdown">{job.name}</Link>
