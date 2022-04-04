@@ -51,8 +51,6 @@ export default function AdminModal(props) {
     passwordValid: false,
     phoneValid: false,
     birthdayValid: false,
-    skillValid: false,
-    certificationValid: false,
   };
   const [valid, setValid] = useState({ ...initialValid });
   const [state, setState] = useState({ ...initialState });
@@ -61,6 +59,7 @@ export default function AdminModal(props) {
   const handleResetForm = () => {
     dispatch(actResetModal());
     if (userEdit) {
+      
       setState({
         name: userEdit.name,
         email: userEdit.email,
@@ -86,6 +85,7 @@ export default function AdminModal(props) {
     } else {
       setState({ ...initialState });
       setChecked({ ...initialChecked });
+      setValid({...initialValid});
     }
   };
 
@@ -158,10 +158,7 @@ export default function AdminModal(props) {
       case "name":{
         nameValid = mess === "" ? true : false;
         let pattern = "^[a-zA-Z_ÀÁÂÃÈÉÊẾÌÍÒÓÔÕÙÚĂĐĨŨƠàáâãèéêìíòóôõùúăđĩũơƯĂẠẢẤẦẨẪẬẮẰẲẴẶ" + "ẸẺẼỀỀỂưăạảấầẩẫậắằẳẵặẹẻẽềềểếỄỆỈỊỌỎỐỒỔỖỘỚỜỞỠỢỤỦỨỪễệỉịọỏốồổỗộớờởỡợ" + "ụủứừỬỮỰỲỴÝỶỸửữựỳỵỷỹý\\s]+$";
-        if (value && value.length <= 4) {
-          nameValid = false;
-          mess = "Lenght must be more than 5";
-        }else if(value && !value.match(pattern)){
+        if(value && !value.match(pattern)){
           nameValid = false;
           mess = "Your name seems invalid";
         }
@@ -472,7 +469,7 @@ export default function AdminModal(props) {
                 </select>
               </div>
               <div className="form-group text-center mt-3">
-                <button className="btn btn-success px-3" type="submit" disabled={!valid.formValid} >
+                <button className="btn btn-success px-3" type="submit" disabled={userEdit?false:!valid.formValid} >
                   {method}
                 </button>
               </div>
