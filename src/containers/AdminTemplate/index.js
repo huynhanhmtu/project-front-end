@@ -10,11 +10,11 @@ export default function AdminTemplate(props) {
     return <Redirect to="/"></Redirect>
   };
   return (
-    <div className='row m-0 pt-3'>
-      <div className='col-3'>
+    <div className='row m-0'>
+      <div className='col-2 px-0'>
         <AdminSidebar />
       </div>
-      <div className='col-9'>
+      <div className='col-10'>
         <Route exact={exact} path={path} component={component} />
       </div>
       <ScrollToTop smooth style={{ width: 50, height: 50, backgroundColor:"#ffffffcc" }} />

@@ -14,8 +14,8 @@ export default function AdminSidebar() {
   }
 
   return (
-    <div>
-      <h5 className='text-center'>Dashboard</h5>
+    <div className="sidebar">
+      <h5 className='text-center pt-3 dashboard'>Dashboard</h5>
       <ul className="nav flex-column">
         <li className="nav-item">
           <Link className="nav-link" to="/">Homepage</Link>
@@ -34,7 +34,7 @@ export default function AdminSidebar() {
             <NavLink activeClassName='sidebar-active' className="nav-link" to="/catalog-management">Catalog Management</NavLink>
           </li>
         </div>
-        <button className="btn btn-light" onClick={handleLogout}>Logout</button>
+        <button className="btn btn-log-out" onClick={handleLogout}>Logout</button>
       </ul>
     </div>
   )

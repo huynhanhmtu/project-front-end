@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import AdminModal from '../_components/Modal'
 import { removeVietnameseTones } from '../_components/Modal/validation';
 import { actDeleteUser, actFetchUsersData } from './modules/actions';
-
+import './style.css';
 export default function UsersManagementPage() {
   const searchInput = useRef(null);
   const dispatch = useDispatch();
@@ -38,11 +38,11 @@ export default function UsersManagementPage() {
           <td>{user.email}</td>
           <td>{user.role}</td>
           <td>
-            <button className='btn btn-info mx-1' data-toggle="modal" data-target="#addModal" onClick={() => {
+            <button className='btn btn-edit mx-1' data-toggle="modal" data-target="#addModal" onClick={() => {
               setMethod("EDIT");
               setUserEdit(user)
             }}>Edit</button>
-            <button className='btn btn-danger mx-1' onClick={() => { handleDeleteUser(user._id) }
+            <button className='btn btn-del mx-1' onClick={() => { handleDeleteUser(user._id) }
             }>×</button>
           </td>
         </tr>
@@ -86,7 +86,7 @@ export default function UsersManagementPage() {
 
   return (
     <div>
-      <h5 className='text-center mb-3'>USERS MANAGEMENT</h5>
+      <h5 className='text-center my-3 user-title'>USERS MANAGEMENT</h5>
       <div className='d-flex justify-content-between mx-5'>
         <form className="form-inline my-2 my-lg-0" onSubmit={(e) => {
           e.preventDefault();
@@ -100,13 +100,13 @@ export default function UsersManagementPage() {
               <option value="role">By Role</option>
             </select>
           </div>
-          <input className="form-control m-0" type="search" placeholder="Find User" aria-label="Search" ref={searchInput} />
-          <button className="btn btn-outline-success m-0" type="submit">Search</button>
+          <input className="form-control m-0 mx-2" type="search" placeholder="Find User" aria-label="Search" ref={searchInput} />
+          <button className="btn m-0 btn-search" type="submit">Search</button>
         </form>
-        <button className="btn btn-primary" data-toggle="modal" data-target="#addModal" onClick={() => {
+        <button className="btn btn-add-user" data-toggle="modal" data-target="#addModal" onClick={() => {
           setMethod("ADD");
           setUserEdit(null)
-        }}>Add User</button>
+        }}> + Add User</button>
       </div>
       <AdminModal method={method} userEdit={userEdit} />
 
