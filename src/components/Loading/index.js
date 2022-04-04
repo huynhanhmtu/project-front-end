@@ -16,9 +16,9 @@ const Loader = styled.div`
   border: 3px solid #f3f3f3;
   border-radius: 50%;
   border-top: 3px solid ${(props) => (props.color ? "blue" : "#3498db")};
-width: 30px;
-height: 30px;
-animation: ${spin} 1s linear infinite;
+  width: 30px;
+  height: 30px;
+  animation: ${spin} 1s linear infinite;
 `;
 
 export default function Loading() {

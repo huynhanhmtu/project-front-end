@@ -1,5 +1,5 @@
 import './style.css';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import { actFetchJobTypes } from './modules/actions';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,6 +9,7 @@ import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 export default function NavbarHome() {
   const history = useHistory();
+  const searchInput = useRef(null);
   const [isLogin, setIsLogin] = useState(localStorage.getItem("UserInfo") ? true : false);
   const jobs = useSelector(state => state.jobTypesReducer.jobTypes);
   const dispatch = useDispatch();
@@ -49,7 +50,7 @@ export default function NavbarHome() {
   }
 
   const handleOnSubmit = () => {
-    const keyword = localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "";
+    const keyword = localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : searchInput.current.value;
     dispatch(actSearchJobs(keyword));
     history.push("/search");
   }
@@ -159,7 +160,7 @@ export default function NavbarHome() {
               e.preventDefault();
               handleOnSubmit();
             }}>
-              <input className="form-control mr-sm-2" style={{ minWidth: 400 }} type="search" placeholder={localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "Find Services"} aria-label="Search" onChange={handleOnChange} />
+              <input className="form-control mr-sm-2" style={{ minWidth: 400 }} type="search" placeholder={localStorage.getItem("job-keyword") ? JSON.parse(localStorage.getItem("job-keyword")) : "Find Services"} aria-label="Search" onChange={handleOnChange} ref={searchInput} />
               <button className="btn btn-outline-success" type='submit'>Search</button>
             </form>
           </div>
