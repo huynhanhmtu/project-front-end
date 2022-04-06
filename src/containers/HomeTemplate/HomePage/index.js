@@ -88,7 +88,7 @@ export default function HomePage(props) {
             <p className='home-title font-weight-bold'>Find the perfect <i>freelance</i> services for your business</p>
             <form className="form-inline my-2 my-lg-0" onSubmit={handleOnSubmit}>
               <input className="form-control mr-sm-2" type="search" placeholder="Find Services" aria-label="Search" onChange={handleOnChange} />
-              <button className="btn btn-success my-2 my-sm-0" type="submit">Search</button>
+              <button className="btn btn-join my-2 my-sm-0" type="submit">Search</button>
             </form>
             <p className='d-flex'>Popular:
               <span>Website Design</span>

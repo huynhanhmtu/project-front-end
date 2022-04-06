@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import { actResetSignUpMessenger, actSignUp } from "./modules/actions";
-
+import './style.css';
 export default function SignUpPage() {
   const formInput = useRef(null);
 
@@ -181,7 +181,7 @@ export default function SignUpPage() {
   }
   return (
     <div className="m-auto col-5 py-3">
-      <h4 className="text-center">Sign Up</h4>
+      <h4 className="text-center sign-up-title">Sign Up</h4>
       <form id="signup" onSubmit={handleSubmit} ref={formInput}>
         <div className="form-group">
           <input
@@ -359,7 +359,7 @@ export default function SignUpPage() {
         </div>
         <div className="form-group">
           <label>Gender</label>
-          <select className="custom-select" name="gender" disabled>
+          <select className="custom-select" name="gender">
             <option value="male" className="selected">
               Male
             </option>
@@ -368,7 +368,7 @@ export default function SignUpPage() {
           </select>
         </div>
         <div className="form-group text-center mt-3">
-          <button className="btn btn-primary" type="submit" disabled={!valid.formValid}>
+          <button className="btn btn-sign-up" type="submit" disabled={!valid.formValid}>
             Sign Up
           </button>
         </div>

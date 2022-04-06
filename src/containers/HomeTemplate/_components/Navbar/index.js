@@ -59,14 +59,14 @@ export default function NavbarHome() {
     if (localStorage.getItem("UserInfo") && JSON.parse(localStorage.getItem("UserInfo")).user.role === "ADMIN") {
       return (
         <>
-          <a className="nav-link px-1" style={{ cursor: "pointer" }} onClick={() => {
+          <a className="nav-link m-1" style={{ cursor: "pointer" }} onClick={() => {
             if (window.confirm("Logout?")) {
               localStorage.removeItem("UserInfo");
               setIsLogin(false);
             }
           }}>Logout</a>
           <li className="nav-item">
-            <Link className="nav-link btn btn-primary text-white ml-1" to="/users-management">Dashboard</Link>
+            <Link className="nav-link btn btn-join text-white ml-1" to="/users-management">Dashboard</Link>
           </li>
         </>
       )
@@ -91,7 +91,7 @@ export default function NavbarHome() {
             <Link className="nav-link" to="/login" >Login</Link>
           </li>
           <li className="nav-item">
-            <Link className="nav-link btn btn-primary text-white px-3 ml-1" to="/signup" >Join</Link>
+            <Link className="nav-link btn btn-primary text-white px-3 ml-1 btn-join" to="/signup" >Join</Link>
           </li>
         </>
       )

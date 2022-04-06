@@ -64,3 +64,23 @@ nav a {
 .svg-white{
   fill: #fff;
 }
+.nav-link{
+  transition: .5s;
+}
+.nav-link:hover{
+  background-color: #497282;
+  border-radius: 5px;
+  color: #fff;
+}
+.btn-join{
+  color: #fff;
+  background-color: #497282;
+  border:1px solid transparent;
+  border-radius: 5px;
+}
+.btn-join:hover{
+  background-color: #3e5e6a;
+  border: 1px solid #497282;
+  color: #fff;
+  transition: .5s;
+}
