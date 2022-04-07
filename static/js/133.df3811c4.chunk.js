@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_front_end=self.webpackChunkproject_front_end||[]).push([[133],{4133:function(e,n,r){r.r(n),r.d(n,{default:function(){return c}});r(2791);var t=r(184);function c(){return(0,t.jsxs)("div",{children:[(0,t.jsx)("h5",{className:"text-center mb-3",children:"CATALOG MANAGEMENT"}),(0,t.jsx)("p",{children:"In progress..."})]})}}}]);
+//# sourceMappingURL=133.df3811c4.chunk.js.map

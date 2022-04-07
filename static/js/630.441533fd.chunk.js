@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkproject_front_end=self.webpackChunkproject_front_end||[]).push([[630],{6630:function(n,e,r){r.r(e),r.d(e,{default:function(){return o}});r(2791);var t=r(6030),c=r(184);function o(){var n=(0,t.v9)((function(n){return n.searchingReducer.store}));return console.log(n),(0,c.jsx)("div",{children:"InfoPage"})}}}]);
+//# sourceMappingURL=630.441533fd.chunk.js.map
