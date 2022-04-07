@@ -1,0 +1,33 @@
+a:hover{
+    text-decoration: none;
+}
+.job-img{
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+}
+.card-title{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: rgb(66, 65, 65);
+    margin: -2px 0;
+}
+.job-text{
+    color: rgb(66, 65, 65);
+    font-size: 18px;
+}
+.job-starting{
+    color: #929293;
+    font-weight: 500;
+}
+.job-cash{
+    font-size: 22px;
+    font-weight: 600;
+}
+.job-count{
+    color: #c2c2c3;
+}
+.job-rating{
+    color: #ffbe5b;
+    font-weight: 500;
+    font-size: 17px;
+}

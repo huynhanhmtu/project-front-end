@@ -59,7 +59,7 @@ export default function NavbarHome() {
     if (localStorage.getItem("UserInfo") && JSON.parse(localStorage.getItem("UserInfo")).user.role === "ADMIN") {
       return (
         <>
-          <a className="nav-link m-1" style={{ cursor: "pointer" }} onClick={() => {
+          <a className="nav-link m-1 btn-join m-auto px-3" style={{ cursor: "pointer" }} onClick={() => {
             if (window.confirm("Logout?")) {
               localStorage.removeItem("UserInfo");
               setIsLogin(false);

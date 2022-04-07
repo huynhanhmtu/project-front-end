@@ -74,6 +74,8 @@ nav a {
 }
 .btn-join{
   color: #fff;
+  font-weight: 700;
+  padding: 10px 20px;
   background-color: #497282;
   border:1px solid transparent;
   border-radius: 5px;
