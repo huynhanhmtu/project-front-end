@@ -11,6 +11,11 @@ const routesHome = [
   },
   {
     exact: true,
+    path: "/project-front-end",
+    component: lazy(() => import("containers/HomeTemplate/HomePage"))
+  },
+  {
+    exact: true,
     path: "/search",
     component: lazy(() => import("containers/HomeTemplate/SearchingPage"))
   },
