@@ -187,7 +187,7 @@ export default function NavbarHome() {
                 </li>
               </ul>
             </div>
-            <ul className="navbar-nav mr-auto">
+            <ul className="navbar-nav mr-auto align-items-center">
               {handleRenderLoginSpace()}
             </ul>
           </div>
