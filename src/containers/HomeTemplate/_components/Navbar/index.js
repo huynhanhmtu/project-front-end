@@ -124,7 +124,7 @@ export default function NavbarHome() {
     }
   }
 
-  if (history.location.pathname == "/") {
+  if (history.location.pathname == "/" || history.location.pathname == "/project-front-end") {
     select("#navbar-home")?.classList.add("navbar-home", "navbar-transparent");
     selectALl(".nav-top .nav-link")?.forEach(nav => nav.classList.add("color-white"));
     select("#svgId")?.classList.add("svg-white");
@@ -136,7 +136,7 @@ export default function NavbarHome() {
   }
 
   window.onscroll = () => {
-    if (history.location.pathname == "/") {
+    if (history.location.pathname == "/" || history.location.pathname == "/project-front-end") {
       handleNavPosition();
     }
   }
